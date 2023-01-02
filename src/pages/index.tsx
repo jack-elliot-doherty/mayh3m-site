@@ -62,7 +62,7 @@ const Home: NextPage = () => {
                     type="text"
                     id="name"
                     {...register("name")}
-                    className="w-full border pl-1 py-1 pr-12 font-light sm:text-sm"
+                    className="w-full border pl-1 py-1.5 pr-12 font-light sm:text-sm"
                     placeholder="Name"
                   />
                 </div>
@@ -79,7 +79,7 @@ const Home: NextPage = () => {
                     type="text"
                     id="email"
                     {...register("email")}
-                    className="w-full border pl-1 py-2 pr-12 font-light sm:text-sm"
+                    className="w-full border pl-1 py-1.5 pr-12 font-light sm:text-sm"
                     placeholder="example@gmail.com"
                   />
                 </div>
@@ -91,7 +91,7 @@ const Home: NextPage = () => {
                     Why you?
                   </label>
                 </div>
-                <div className="relative mt-1 shadow-sm">
+                <div className="relative mt-1">
                   <textarea
                     id="why"
                     rows={5}
