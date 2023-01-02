@@ -33,7 +33,7 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex min-h-full items-center justify-center font-semibold">
         <div className="container flex flex-col items-center justify-center gap-16 px-4 py-16 ">
-          <img src="/static/img/logo.png"></img>
+          <img alt="Mayh3m logo" title="Mayh3m logo" src="/static/img/logo.png"></img>
           <div className="text-center">
             <h1 className="text-2xl">Congratulations</h1>
             <h2 className="text-3xl">
@@ -47,63 +47,74 @@ const Home: NextPage = () => {
             <h3>Apply today for our first drop and be 1 of 100.</h3>
 
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="">
-                <div className="flex">
+              <div className="mt-2">
+                <div className="text-left">
                   <label
                     htmlFor="name"
-                    className="text-sm font-medium text-gray-700"
+                    className="text-base font-medium"
                   >
                     Name
                   </label>
-                  <div className="relative mt-1 rounded-md shadow-sm">
+                  </div>
+                  <div className="relative mt-1 shadow-sm border">
                     <input
                       type="text"
                       id="name"
                       {...register("name")}
-                      className="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      placeholder="your name"
+                      className="w-full py-1 pr-12 sm:text-sm font-light"
+                      placeholder=" Name"
                     />
-                  </div>
                 </div>
               </div>
 
-              <div>
-                <div className="flex">
+              <div className="mt-2">
+                <div className="text-left">
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-gray-700"
+                    className="text-base font-medium"
                   >
                     Email
                   </label>
-                  <div className="relative mt-1 rounded-md shadow-sm">
+                  </div>
+                  <div className="mt-1 shadow-sm border">
                     <input
                       type="text"
                       id="email"
                       {...register("email")}
-                      className="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      placeholder="example@gmail.com"
+                      className="w-full py-2 pr-12 font-light sm:text-sm"
+                      placeholder=" example@gmail.com"
                     />
                   </div>
-                </div>
               </div>
 
-              <div>
-                <div className="flex">
+              <div className="mt-2">
+                <div className="text-left">
                   <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-700"
+                    htmlFor="why"
+                    className="block text-base font-medium"
                   >
                     Why you?
                   </label>
-                  <div className="relative mt-1 rounded-md shadow-sm">
+                  </div>
+                  <div className="relative mt-1 shadow-sm border">
                     <textarea
                       id="why"
+                      rows={5}
                       {...register("why")}
-                      className="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      placeholder="why you?"
+                      className="w-full pr-12 pt-1 font-light sm:text-sm"
+                      placeholder=" why you?"
                     />
                   </div>
-                </div>
+                  <div>
+                    <button
+
+                      type="submit"
+                      className="mt-2 w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                    >
+                      Apply
+                    </button>
+                    
+                  </div>
               </div>
             </form>
           </div>
