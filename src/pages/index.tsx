@@ -19,7 +19,7 @@ const Home: NextPage = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit:SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data);
     newApplicant.mutate(data);
   };
@@ -35,33 +35,77 @@ const Home: NextPage = () => {
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           <img src="/static/img/logo.png"></img>
           <div className="text-center">
-            <p>Congratulations</p>
-            <p>Welcome to Mayh<span className="text-red-600">3</span>m Clothing</p>
-            <p>By F<span className="text-red-600">3</span>Z</p>
+            <h1 className="text-2xl">Congratulations</h1>
+            <h2 className="text-3xl">
+              Welcome to Mayh<span className="text-red-600">3</span>m Clothing
+            </h2>
+            <p className="text-xl">
+              By F<span className="text-red-600">3</span>Z
+            </p>
           </div>
-          <div className="text-center">
-
-            <h3>Apply today for our first drop and be 1 of 100</h3>
+          <div className="text-center text-lg">
+            <h3>Apply today for our first drop and be 1 of 100.</h3>
 
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="form-control">
-                <label>Name</label>
-                <input type="text" {...register("name")} />
+              <div className="">
+                <div className="flex">
+                  <label
+                    htmlFor="name"
+                    className="text-sm font-medium text-gray-700"
+                  >
+                    Name
+                  </label>
+                  <div className="relative mt-1 rounded-md shadow-sm">
+                    <input
+                      type="text"
+                      id="name"
+                      {...register("name")}
+                      className="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      placeholder="your name"
+                    />
+                  </div>
+                </div>
               </div>
-              <div className="form-control">
-                <label>Email</label>
-                <input type="text" {...register("email")} />
+
+              <div>
+                <div className="flex">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Email
+                  </label>
+                  <div className="relative mt-1 rounded-md shadow-sm">
+                    <input
+                      type="text"
+                      id="email"
+                      {...register("email")}
+                      className="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      placeholder="example@gmail.com"
+                    />
+                  </div>
+                </div>
               </div>
-              <div className="form-control">
-                <label>Why you?</label>
-                <textarea {...register("why")} />
-              </div>
-              <div className="form-control">
-                <label></label>
-                <button type="submit">Apply</button>
+
+              <div>
+                <div className="flex">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Why you?
+                  </label>
+                  <div className="relative mt-1 rounded-md shadow-sm">
+                    <textarea
+                      id="why"
+                      {...register("why")}
+                      className="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      placeholder="why you?"
+                    />
+                  </div>
+                </div>
               </div>
             </form>
-
           </div>
         </div>
       </main>
