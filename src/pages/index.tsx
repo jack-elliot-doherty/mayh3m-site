@@ -57,13 +57,13 @@ const Home: NextPage = () => {
                     Name
                   </label>
                 </div>
-                <div className="relative mt-1 border shadow-sm">
+                <div className="relative mt-1 shadow-sm">
                   <input
                     type="text"
                     id="name"
                     {...register("name")}
-                    className="w-full py-1 pr-12 font-light sm:text-sm"
-                    placeholder=" Name"
+                    className="w-full border pl-1 py-1 pr-12 font-light sm:text-sm"
+                    placeholder="Name"
                   />
                 </div>
               </div>
@@ -74,13 +74,13 @@ const Home: NextPage = () => {
                     Email
                   </label>
                 </div>
-                <div className="mt-1 border shadow-sm">
+                <div className="mt-1 shadow-sm">
                   <input
                     type="text"
                     id="email"
                     {...register("email")}
-                    className="w-full py-2 pr-12 font-light sm:text-sm"
-                    placeholder=" example@gmail.com"
+                    className="w-full border pl-1 py-2 pr-12 font-light sm:text-sm"
+                    placeholder="example@gmail.com"
                   />
                 </div>
               </div>
@@ -91,13 +91,13 @@ const Home: NextPage = () => {
                     Why you?
                   </label>
                 </div>
-                <div className="relative mt-1 border shadow-sm">
+                <div className="relative mt-1 shadow-sm">
                   <textarea
                     id="why"
                     rows={5}
                     {...register("why")}
-                    className="w-full pr-12 pt-1 font-light sm:text-sm"
-                    placeholder=" why you?"
+                    className="w-full pl-1 pr-12 pt-1 border font-light sm:text-sm"
+                    placeholder="why you?"
                   />
                 </div>
                 <div>
