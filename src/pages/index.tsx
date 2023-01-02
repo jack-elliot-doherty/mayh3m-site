@@ -114,7 +114,7 @@ const Home: NextPage = () => {
           <div className="flex justify-end p-6">
             <div className="p-1">
               <a
-                href="https://www.instagram.com/mayhemclothing/"
+                href="https://www.instagram.com/mayh3m.xyz/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
