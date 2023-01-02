@@ -11,8 +11,12 @@ datasource db {
   relationMode = "prisma"
 }
 
-model Example {
+model Applicant {
     id        String   @id @default(cuid())
+    name      String
+    email     String   @unique
+    why       String
+    verified  Boolean  @default(false)
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 }
