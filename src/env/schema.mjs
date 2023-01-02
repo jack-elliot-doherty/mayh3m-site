@@ -21,7 +21,7 @@ export const serverSchema = z.object({
   ),
   DISCORD_CLIENT_ID: z.string(),
   DISCORD_CLIENT_SECRET: z.string(),
-  HOST: z.string().url(),
+  HOST: z.string(),
   USER: z.string(),
   PASS: z.string(),
   SERVICE: z.string(),

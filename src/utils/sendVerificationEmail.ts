@@ -1,6 +1,5 @@
 import { getBaseUrl } from "./api";
-
-const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer";
 
 export const sendVerificationEmail = async (email: string, token: string) => {
     try {
@@ -18,7 +17,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
         await transporter.sendMail({
           from: process.env.USER,
           to: email,
-          subject: subject,
+          subject: "Verify your email",
           text: getBaseUrl() + "/verify/" + token,
         });
         console.log("email sent sucessfully");
@@ -26,6 +25,5 @@ export const sendVerificationEmail = async (email: string, token: string) => {
         console.log("email not sent");
         console.log(error);
       }
+      console.log(process.env.USER, process.env.PASS, process.env.HOST, process.env.SERVICE);
     };
-
-    env("DATABASE_URL")
