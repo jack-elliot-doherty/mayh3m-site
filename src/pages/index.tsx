@@ -61,7 +61,7 @@ const Home: NextPage = () => {
                   <input
                     type="text"
                     id="name"
-                    {...register("name")}
+                    {...register("name", {required: true, maxLength: 50, minLength: 3})}
                     className="w-full border pl-1 py-1.5 pr-12 font-light sm:text-sm"
                     placeholder="Name"
                   />
@@ -78,7 +78,7 @@ const Home: NextPage = () => {
                   <input
                     type="text"
                     id="email"
-                    {...register("email")}
+                    {...register("email", {required: true, pattern: /^\S+@\S+$/i})}
                     className="w-full border pl-1 py-1.5 pr-12 font-light sm:text-sm"
                     placeholder="example@gmail.com"
                   />
@@ -95,7 +95,7 @@ const Home: NextPage = () => {
                   <textarea
                     id="why"
                     rows={5}
-                    {...register("why")}
+                    {...register("why", {required: true, maxLength: 300, minLength: 20})}
                     className="w-full pl-1 pr-12 pt-1 border font-light sm:text-sm"
                     placeholder="why you?"
                   />
