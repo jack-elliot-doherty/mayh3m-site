@@ -25,6 +25,9 @@ export const serverSchema = z.object({
   USER: z.string(),
   PASS: z.string(),
   SERVICE: z.string(),
+  NEXT_PRIVATE_RECAPTCHA_SECRET_KEY: z.string(),
+
+
 
 });
 
@@ -35,6 +38,7 @@ export const serverSchema = z.object({
  */
 export const clientSchema = z.object({
   // NEXT_PUBLIC_CLIENTVAR: z.string(),
+  NEXT_PUBLIC_RECAPTCHA_SITE_KEY: z.string(),
 });
 
 /**
@@ -45,4 +49,5 @@ export const clientSchema = z.object({
  */
 export const clientEnv = {
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+  NEXT_PUBLIC_RECAPTCHA_SITE_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
 };

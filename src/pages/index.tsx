@@ -2,6 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { ReactElement } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import ReCAPTCHA from "react-google-recaptcha"
 import Layout from "../components/layout";
 
 import { api } from "../utils/api";
@@ -26,6 +27,7 @@ const Home: NextPageWithLayout = () => {
     console.log(data);
     newApplicant.mutate(data);
   };
+
 
   return (
     <>
@@ -119,8 +121,18 @@ const Home: NextPageWithLayout = () => {
                     Please enter a reason (min 20 Characters).
                     </p>
                     )}
-              
+              </div>
                 <div>
+                  <div >
+                  <ReCAPTCHA
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
+                  size="normal"
+                  
+
+                  />
+                  </div>
+                  <div>
+
                   <button
                     type="submit"
                     className="mt-2 inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
