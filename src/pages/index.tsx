@@ -1,8 +1,11 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import { ReactElement } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import Layout from "../components/layout";
 
 import { api } from "../utils/api";
+import { NextPageWithLayout } from "./_app";
 
 type Inputs = {
   name: string;
@@ -10,7 +13,7 @@ type Inputs = {
   why: string;
 };
 
-const Home: NextPage = () => {
+const Home: NextPageWithLayout = () => {
   const newApplicant = api.applicant.createApplicant.useMutation();
 
   const {
@@ -140,6 +143,14 @@ const Home: NextPage = () => {
         </div>
       </main>
     </>
+  );
+};
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return (
+      <Layout>
+      {page}
+      </Layout>
   );
 };
 
