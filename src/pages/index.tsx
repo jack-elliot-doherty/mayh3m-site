@@ -62,8 +62,17 @@ const Home: NextPageWithLayout = () => {
                     {...register("name", {required: true, maxLength: 50, minLength: 3})}
                     className="w-full border pl-1 py-1.5 pr-12 font-light sm:text-sm"
                     placeholder="Name"
+                    aria-invalid={errors.name ? "true" : "false"}
                   />
                 </div>
+                {errors.name && (
+                  <>
+                  <p className="text-left mt-2 text-sm text-red-600" id="name-error">
+                    Please enter a valid name
+                    </p>
+                    <p className="text-left mt-2 text-xs text-red-600">(3-50 Characters, No special Characters).</p>
+                    </>
+                    )}
               </div>
 
               <div className="mt-2">
@@ -79,14 +88,20 @@ const Home: NextPageWithLayout = () => {
                     {...register("email", {required: true, pattern: /^\S+@\S+$/i})}
                     className="w-full border pl-1 py-1.5 pr-12 font-light sm:text-sm"
                     placeholder="example@gmail.com"
+                    aria-invalid={errors.email ? "true" : "false"}
                   />
                 </div>
+                {errors.email && (
+                  <p className="text-left mt-2 text-sm text-red-600" id="email-error">
+                    Please enter a valid email address.
+                    </p>
+                    )}
               </div>
 
               <div className="mt-2">
                 <div className="text-left">
                   <label htmlFor="why" className="block text-base font-medium">
-                    Why you?
+                    Why you? <span className="text-xs">(20-300 Characters)</span>
                   </label>
                 </div>
                 <div className="relative mt-1">
@@ -96,8 +111,15 @@ const Home: NextPageWithLayout = () => {
                     {...register("why", {required: true, maxLength: 300, minLength: 20})}
                     className="w-full pl-1 pr-12 pt-1 border font-light sm:text-sm"
                     placeholder="why you?"
+                    aria-invalid={errors.why ? "true" : "false"}
                   />
                 </div>
+                {errors.why && (
+                  <p className="text-left mt-2 text-sm text-red-600" id="why-error">
+                    Please enter a reason (min 20 Characters).
+                    </p>
+                    )}
+              
                 <div>
                   <button
                     type="submit"
