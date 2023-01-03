@@ -18,7 +18,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
           from: process.env.USER,
           to: email,
           subject: "Verify your email",
-          text: getBaseUrl() + "/verify/" + token,
+          text: getBaseUrl() + "/api/verify/" + token,
         });
         console.log("email sent sucessfully");
       } catch (error) {

@@ -22,7 +22,7 @@ model Applicant {
 }
 
 model ApplicantVerificationToken {
-
+    id          String   @id @default(cuid())
     applicantId String
     token       String   @unique
 
