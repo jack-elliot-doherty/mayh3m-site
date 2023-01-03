@@ -1,7 +1,7 @@
 import Header from "./header"
 import Footer from "./footer"
 
-const Layout = ({ children }) => {
+const Layout = ({ children }:any) => {
     return (
         <div>
             <Header />
