@@ -15,19 +15,19 @@ export const applicantRouter = createTrpcRouter({
     )
     .mutation(async ({ input, ctx }) => {
       try {
-        fetch(
+        const response = await fetch(
           `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.NEXT_PRIVATE_RECAPTCHA_SECRET_KEY}&response=${input.token}`,
           {
             method: "POST",
           }
-        )
-          .then((res) => res.json())
-          .then((data) => {
-            if (!data.success) {
-              console.log("Invalid reCAPTCHA@@@@@@@@@@@@@@@@@");
-              return Error("Invalid reCAPTCHA");
-            }
-          });
+        );
+
+        const data = await response.json();
+
+        if (!data.success) {
+          return Error("Recaptcha failed");
+        }
+
 
         const applicant = await ctx.prisma.applicant.create({
           data: {
