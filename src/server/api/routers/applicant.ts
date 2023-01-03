@@ -30,4 +30,17 @@ export const applicantRouter = createTrpcRouter({
         console.log(err);
       }
     }),
+    getApplicant: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ input, ctx }) => {
+      try {
+        const applicant = await ctx.prisma.applicant.findFirst({
+          where: { id: input.id },
+        });
+        return applicant;
+      } catch (err) {
+        console.log(err);
+      }
+    }),
+
 });
