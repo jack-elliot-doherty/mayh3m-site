@@ -15,6 +15,21 @@ const Header = () => {
       <link rel="apple-touch-icon" href="/static/favicon.ico" />
       <link rel="manifest" href="/manifest.webmanifest" />
 
+      <meta name="theme-color" content={"#fafafa"} />
+
+      {/* <!-- Open Graph / Facebook --> */}
+      <meta property="og:locale" content={"en_GB"} />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={"May3hem"} />
+      <meta property="og:description" content={"Mayh3em Clothing"} />
+
+      {/* <!-- Twitter --> */}
+      <meta
+        property="twitter:card"
+      />
+      <meta property="twitter:title" content={"Mayh3m"} />
+      <meta property="twitter:description" content={"Mayh3m Clothing"} />
+
     </Head>
   );
 };
