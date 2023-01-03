@@ -5,9 +5,30 @@ import { sendVerificationEmail } from "../../../utils/sendVerificationEmail";
 
 export const applicantRouter = createTrpcRouter({
   createApplicant: publicProcedure
-    .input(z.object({ name: z.string(), email: z.string(), why: z.string() }))
+    .input(
+      z.object({
+        name: z.string(),
+        email: z.string(),
+        why: z.string(),
+        token: z.string(),
+      })
+    )
     .mutation(async ({ input, ctx }) => {
       try {
+        fetch(
+          `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.NEXT_PRIVATE_RECAPTCHA_SECRET_KEY}&response=${input.token}`,
+          {
+            method: "POST",
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            if (!data.success) {
+              console.log("Invalid reCAPTCHA@@@@@@@@@@@@@@@@@");
+              return Error("Invalid reCAPTCHA");
+            }
+          });
+
         const applicant = await ctx.prisma.applicant.create({
           data: {
             name: input.name,
@@ -30,7 +51,7 @@ export const applicantRouter = createTrpcRouter({
         console.log(err);
       }
     }),
-    getApplicant: publicProcedure
+  getApplicant: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ input, ctx }) => {
       try {
@@ -42,5 +63,19 @@ export const applicantRouter = createTrpcRouter({
         console.log(err);
       }
     }),
+  getAllVerifiedApplicants: protectedProcedure
+    .input(z.object({}))
+    .query(async ({ ctx }) => {
+      try {
+        const applicants = await ctx.prisma.applicant.findMany({
+          where: { verified: true },
+        });
+        return applicants;
+      } catch (err) {
+        console.log(err);
+      }
+    }),
+
+
 
 });

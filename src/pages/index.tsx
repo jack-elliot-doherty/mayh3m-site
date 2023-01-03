@@ -1,8 +1,8 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { ReactElement } from "react";
+import { ReactElement, useRef } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import ReCAPTCHA from "react-google-recaptcha"
+import ReCAPTCHA from "react-google-recaptcha";
 import Layout from "../components/layout";
 
 import { api } from "../utils/api";
@@ -16,6 +16,7 @@ type Inputs = {
 
 const Home: NextPageWithLayout = () => {
   const newApplicant = api.applicant.createApplicant.useMutation();
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const {
     register,
@@ -25,9 +26,14 @@ const Home: NextPageWithLayout = () => {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data);
-    newApplicant.mutate(data);
+    const token = recaptchaRef.current?.getValue();
+    recaptchaRef.current?.reset();
+    if (!token) {
+      alert("Please verify that you are a human!");
+      return;
+    }
+    newApplicant.mutate({...data, token: token});
   };
-
 
   return (
     <>
@@ -61,20 +67,29 @@ const Home: NextPageWithLayout = () => {
                   <input
                     type="text"
                     id="name"
-                    {...register("name", {required: true, maxLength: 50, minLength: 3})}
-                    className="w-full border pl-1 py-1.5 pr-12 font-light sm:text-sm"
+                    {...register("name", {
+                      required: true,
+                      maxLength: 50,
+                      minLength: 3,
+                    })}
+                    className="w-full border py-1.5 pl-1 pr-12 font-light sm:text-sm"
                     placeholder="Name"
                     aria-invalid={errors.name ? "true" : "false"}
                   />
                 </div>
                 {errors.name && (
                   <>
-                  <p className="text-left mt-2 text-sm text-red-600" id="name-error">
-                    Please enter a valid name
+                    <p
+                      className="mt-2 text-left text-sm text-red-600"
+                      id="name-error"
+                    >
+                      Please enter a valid name
                     </p>
-                    <p className="text-left mt-2 text-xs text-red-600">(3-50 Characters, No special Characters).</p>
-                    </>
-                    )}
+                    <p className="mt-2 text-left text-xs text-red-600">
+                      (3-50 Characters, No special Characters).
+                    </p>
+                  </>
+                )}
               </div>
 
               <div className="mt-2">
@@ -87,52 +102,66 @@ const Home: NextPageWithLayout = () => {
                   <input
                     type="text"
                     id="email"
-                    {...register("email", {required: true, pattern: /^\S+@\S+$/i})}
-                    className="w-full border pl-1 py-1.5 pr-12 font-light sm:text-sm"
+                    {...register("email", {
+                      required: true,
+                      pattern: /^\S+@\S+$/i,
+                    })}
+                    className="w-full border py-1.5 pl-1 pr-12 font-light sm:text-sm"
                     placeholder="example@gmail.com"
                     aria-invalid={errors.email ? "true" : "false"}
                   />
                 </div>
                 {errors.email && (
-                  <p className="text-left mt-2 text-sm text-red-600" id="email-error">
+                  <p
+                    className="mt-2 text-left text-sm text-red-600"
+                    id="email-error"
+                  >
                     Please enter a valid email address.
-                    </p>
-                    )}
+                  </p>
+                )}
               </div>
 
               <div className="mt-2">
                 <div className="text-left">
                   <label htmlFor="why" className="block text-base font-medium">
-                    Why you? <span className="text-xs">(20-300 Characters)</span>
+                    Why you?{" "}
+                    <span className="text-xs">(20-300 Characters)</span>
                   </label>
                 </div>
                 <div className="relative mt-1">
                   <textarea
                     id="why"
                     rows={5}
-                    {...register("why", {required: true, maxLength: 300, minLength: 20})}
-                    className="w-full pl-1 pr-12 pt-1 border font-light sm:text-sm"
+                    {...register("why", {
+                      required: true,
+                      maxLength: 300,
+                      minLength: 20,
+                    })}
+                    className="w-full border pl-1 pr-12 pt-1 font-light sm:text-sm"
                     placeholder="why you?"
                     aria-invalid={errors.why ? "true" : "false"}
                   />
                 </div>
                 {errors.why && (
-                  <p className="text-left mt-2 text-sm text-red-600" id="why-error">
+                  <p
+                    className="mt-2 text-left text-sm text-red-600"
+                    id="why-error"
+                  >
                     Please enter a reason (min 20 Characters).
-                    </p>
-                    )}
+                  </p>
+                )}
               </div>
+              <div className="mt-1">
                 <div>
-                  <div >
                   <ReCAPTCHA
-                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
-                  size="normal"
-                  
-
+                    sitekey={
+                      process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string
+                    }
+                    size="normal"
+                    ref={recaptchaRef}
                   />
-                  </div>
-                  <div>
-
+                </div>
+                <div className="">
                   <button
                     type="submit"
                     className="mt-2 inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
@@ -162,10 +191,7 @@ const Home: NextPageWithLayout = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
-                  className="h-auto w-5"
-                  src="/static/img/twitter.png"
-                ></img>
+                <img className="h-auto w-5" src="/static/img/twitter.png"></img>
               </a>
             </div>
           </div>
@@ -176,11 +202,7 @@ const Home: NextPageWithLayout = () => {
 };
 
 Home.getLayout = function getLayout(page: ReactElement) {
-  return (
-      <Layout>
-      {page}
-      </Layout>
-  );
+  return <Layout>{page}</Layout>;
 };
 
 export default Home;
