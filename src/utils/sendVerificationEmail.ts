@@ -17,8 +17,8 @@ export const sendVerificationEmail = async (email: string, token: string) => {
         await transporter.sendMail({
           from: process.env.USER,
           to: email,
-          subject: "Verify your email",
-          text: getBaseUrl() + "/api/verify/" + token,
+          subject: "You're nearly in | Verify your email",
+          text: "Click the link below to verify your application:\n\n" + getBaseUrl() + "/api/verify/" + token,
         });
         console.log("email sent sucessfully");
       } catch (error) {
