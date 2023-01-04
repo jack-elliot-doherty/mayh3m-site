@@ -64,7 +64,6 @@ export const applicantRouter = createTrpcRouter({
       }
     }),
   getAllVerifiedApplicants: protectedProcedure
-    .input(z.object({}))
     .query(async ({ ctx }) => {
       try {
         const applicants = await ctx.prisma.applicant.findMany({
