@@ -244,7 +244,7 @@ const Home: NextPageWithLayout = () => {
             </div>
             <div className="p-1">
               <a
-                href="https://www.facebook.com/mayhemclothing/"
+                href="https://twitter.com/mayh3m_by_f3z"
                 target="_blank"
                 rel="noopener noreferrer"
               >
