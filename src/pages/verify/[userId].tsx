@@ -18,7 +18,7 @@ const Verify: NextPageWithLayout = () => {
           title="Mayh3m logo"
           src="/static/img/logo.png"
         ></img>
-        <p className="text-3xl my-5">You're in.</p>
+        <p className="text-3xl my-5">You&apos;re in.</p>
         <p className="text-2xl">{applicant.data?.name}...</p>
         <p className="text-3xl mt-1">
           Welcome to Mayh<span className="text-red-600">3</span>m.
