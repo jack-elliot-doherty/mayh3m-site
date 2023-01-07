@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { api } from "../utils/api";
 import Modal from "react-modal";
+import { useForm } from "react-hook-form";
 
 const modalStyles = {
   content: {
@@ -13,14 +14,26 @@ const modalStyles = {
   },
 };
 
+type FormData = {
+  email: string;
+};
+
 const Footer = () => {
   const [showform, setShowForm] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
   const addNewsLetterSubsciber = api.newsletter.subscribe.useMutation();
 
-  const handleAddNewsLetterSubscriber = (email: string) => {
-    console.log(email);
-    // addNewsLetterSubsciber.mutate(email);
-  };
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+    addNewsLetterSubsciber.mutate({ email: data.email });
+    setSubscribed(true);
+  });
 
   return (
     <footer className="flex justify-between p-6 text-xs">
@@ -34,6 +47,7 @@ const Footer = () => {
           NEWSLETTER
         </button>
         <Modal
+          closeTimeoutMS={200}
           shouldCloseOnEsc={true}
           style={modalStyles}
           isOpen={showform}
@@ -42,33 +56,43 @@ const Footer = () => {
           className="Modal"
           overlayClassName="Overlay"
         >
-          <div className="flex flex-col items-center justify-center gap-4 px-4 py-8">
-            <p className="text-xs font-[550]">
-              GET NOTIFIED ABOUT NEW PRODUCT ARRIVALS AND EARLY RELEASE INFO
-            </p>
-            <input
-              value={"test"}
-              className="w-full border-2 border-black p-2"
-              type="email"
-              placeholder="Email"
-            ></input>
-            <button
-              className="w-full bg-black p-2 text-white"
-              onClick={() => {
-                handleAddNewsLetterSubscriber("test");
-                setShowForm(false);
-              }}
-            >
-              Subscribe
-            </button>
-            <p className="text-xs">
-              You may unsubscribe from our list at any time. Visit our{" "}
-              <a className="text-blue-400 underline" href="/">
-                PRIVACY POLICY
-              </a>{" "}
-              for more information.
-            </p>
-          </div>
+          {subscribed ? (
+            <div className="flex flex-col items-center justify-center gap-4 px-4 py-8">
+              <p className="text-xs font-[550]">
+                THANK YOU FOR SUBSCRIBING TO MAYH3M.
+              </p>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center gap-4 px-4 py-8">
+              <p className="text-xs font-[550]">
+                GET NOTIFIED ABOUT NEW PRODUCT ARRIVALS AND EARLY RELEASE INFO
+              </p>
+              <form onSubmit={onSubmit}>
+                <input
+                  {...register("email", {
+                    required: true,
+                    pattern: /^\S+@\S+$/i,
+                  })}
+                  className="w-full border-2 border-black p-2"
+                  type="email"
+                  placeholder="Email"
+                />
+                <button
+                  type="submit"
+                  className="w-full bg-black p-2 text-white"
+                >
+                  Subscribe
+                </button>
+              </form>
+              <p className="text-xs">
+                You may unsubscribe from our list at any time. Visit our{" "}
+                <a className="text-blue-400 underline" href="/">
+                  PRIVACY POLICY
+                </a>{" "}
+                for more information.
+              </p>
+            </div>
+          )}
         </Modal>
       </div>
       <div className="">
