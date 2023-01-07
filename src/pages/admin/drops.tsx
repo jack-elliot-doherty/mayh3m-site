@@ -1,6 +1,8 @@
+import Layout from "../../components/layout";
 import { api } from "../../utils/api";
+import { NextPageWithLayout } from "../_app";
 
-const Drops = () => {
+const Drops: NextPageWithLayout = () => {
   const drops = api.drop.getDrops.useQuery();
 
   if (drops.isLoading) return <div>Loading...</div>;
@@ -21,3 +23,9 @@ const Drops = () => {
     </div>
   );
 };
+
+Drops.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};
+
+export default Drops;

@@ -9,14 +9,11 @@ const Drop = () => {
     id: dropId,
   });
   return (
-    
-    {drop.data ? 
-
     <div>
-      <h1>{drop.data.name}</h1>
-      <p>{drop.data.description}</p>
+      <h1>Drop</h1>
+      <p>{drop.data?.name}</p>
+      <p>{drop.data?.description}</p>
     </div>
-    : <div>Loading...</div>}
   );
 };
 
