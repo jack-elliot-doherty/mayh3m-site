@@ -1,12 +1,8 @@
-import { type NextPage } from "next";
-import { ReactElement, useRef } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { ReactElement } from "react";
 import Layout from "../components/layout";
-import { signIn } from "next-auth/react";
 
 import { api } from "../utils/api";
 import { NextPageWithLayout } from "./_app";
-import Link from "next/link";
 import DropCard from "../components/DropCard";
 
 const Home: NextPageWithLayout = () => {

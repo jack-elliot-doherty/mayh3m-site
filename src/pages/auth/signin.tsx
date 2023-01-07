@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import { CtxOrReq } from "next-auth/client/_utils";
 import { NextPageWithLayout } from "../_app";
 import Layout from "../../components/layout";
-import { FaDiscord, FaFacebook, FaGoogle } from "react-icons/fa";
+import { FaDiscord, FaGoogle } from "react-icons/fa";
 
 const SignIn = ({
   providers,

@@ -1,7 +1,5 @@
 import { z } from "zod";
-import crypto from "crypto";
 import { createTrpcRouter, publicProcedure, protectedProcedure } from "../trpc";
-import { sendVerificationEmail } from "../../../utils/sendVerificationEmail";
 import { sendConfirmationEmail } from "../../../utils/sendConfirmationEmail";
 
 export const applicationRouter = createTrpcRouter({

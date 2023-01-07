@@ -1,5 +1,4 @@
 import { getBaseUrl } from "./api";
-import nodemailer from "nodemailer";
 import { sendMail } from "./sendMail";
 
 export const sendVerificationEmail = async (email: string, token: string) => {
