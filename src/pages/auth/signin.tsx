@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import { CtxOrReq } from "next-auth/client/_utils";
 import { NextPageWithLayout } from "../_app";
 import Layout from "../../components/layout";
-import { FaFacebook, FaGoogle } from "react-icons/fa";
+import { FaDiscord, FaFacebook, FaGoogle } from "react-icons/fa";
 
 const SignIn = ({
   providers,
@@ -70,14 +70,14 @@ const SignIn = ({
                     <div className="">
                       <button
                         type="button"
-                        className="w-full border border-gray-100 bg-gray-100 p-3 font-semibold hover:bg-gray-200"
+                        className="mb-3 w-full border border-gray-100 bg-gray-100 p-3 font-semibold hover:bg-gray-200"
                         onClick={() => signIn(provider.id)}
                       >
                         <div className="flex items-center justify-center">
                           {provider.name === "Google" ? (
                             <FaGoogle />
                           ) : (
-                            <FaFacebook />
+                            <FaDiscord />
                           )}
                           <div className="ml-2">
                             Continue with {provider.name}
