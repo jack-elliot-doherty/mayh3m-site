@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { api } from "../utils/api";
 import Modal from "react-modal";
 import { useForm } from "react-hook-form";
+import Link from "next/link";
 
 const modalStyles = {
   content: {
@@ -86,9 +87,12 @@ const Footer = () => {
               </form>
               <p className="text-xs">
                 You may unsubscribe from our list at any time. Visit our{" "}
-                <a className="text-blue-400 underline" href="/">
+                <Link
+                  className="text-blue-400 underline"
+                  href="/privacy-policy"
+                >
                   PRIVACY POLICY
-                </a>{" "}
+                </Link>{" "}
                 for more information.
               </p>
             </div>

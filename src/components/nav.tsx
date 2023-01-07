@@ -1,4 +1,5 @@
 import { useSession, signOut, signIn } from "next-auth/react";
+import Link from "next/link";
 
 const Nav = () => {
   const { data: sessionData } = useSession();
@@ -9,24 +10,24 @@ const Nav = () => {
       role="navigation"
     >
       <div className="flex justify-center">
-        <a href="/" className="pl-8 hover:opacity-50">
+        <Link href="/" className="pl-8 hover:opacity-50">
           <img
             alt="Mayh3m logo"
             title="Mayh3m logo"
             className="h-8"
             src="/static/img/logo.png"
           ></img>
-        </a>
+        </Link>
         {/* home should be next to the logo */}
-        <a href="/" className="my-auto pl-8 hover:opacity-50">
+        <Link href="/" className="my-auto pl-8 hover:opacity-50">
           HOME
-        </a>
+        </Link>
       </div>
       <div className="flex">
         {sessionData && sessionData.user?.role === "admin" && (
-          <a href="/admin/applicants" className="pr-8">
+          <Link href="/admin/applicants" className="pr-8">
             Applicants
-          </a>
+          </Link>
         )}
         {sessionData ? (
           <button
