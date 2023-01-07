@@ -37,6 +37,10 @@ const DropApplicationForm: React.FC<DropApplicationFormProps> = ({
     <div className="w-3/4 text-center sm:w-1/2">
       <form onSubmit={onSubmit}>
         <div className="">
+          <p className="text-lg font-bold">JOIN THE DROP</p>
+          <p className="mb-4 text-xs">
+            Apply below for a chance to be involved in this exclusive drop.
+          </p>
           <label className="text-xs font-bold" htmlFor="why">
             WHY DO YOU WANT TO JOIN THIS DROP?
           </label>
@@ -45,10 +49,9 @@ const DropApplicationForm: React.FC<DropApplicationFormProps> = ({
           <textarea
             required
             {...register("why", { required: true })}
-            className="h-40 w-full border p-2 focus:outline-none"
-            placeholder="tesdt"
+            className="mt-2 h-40 w-full border p-2 focus:outline-none"
+            placeholder="why..."
           />
-          {/* {errors.why && <p className="text-red-400">This field is required</p>} */}
           <button
             className="w-full bg-black p-2 text-xs text-white hover:opacity-50"
             type="submit"
