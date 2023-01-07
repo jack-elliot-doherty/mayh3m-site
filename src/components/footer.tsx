@@ -40,6 +40,7 @@ const Footer = () => {
     <footer className="flex justify-between p-6 text-xs">
       <div>
         <button
+          type="button"
           onClick={() => {
             setShowForm(true);
           }}
@@ -99,8 +100,8 @@ const Footer = () => {
           )}
         </Modal>
       </div>
-      <div className="">
-        <p>© 2023 MAYH3M</p>
+      <div className="w-full text-center">
+        <p className="mr-14">© 2023 MAYH3M</p>
       </div>
 
       <div className="flex">
