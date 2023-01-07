@@ -15,10 +15,10 @@ const Drop: NextPageWithLayout = () => {
     <>
       <div className="text-center">
         <h1 className="text-3xl font-bold">{drop.data?.name}</h1>
-        <img src={drop.data?.image}></img>
+        <img alt="drop preview image" src={drop.data?.image}></img>
         <p className="font-bold">{drop.data?.description}</p>
         <p className="text-xs italic">Capacity: 100</p>
-        <p className="text-xs italic">Places emainaing: 32</p>
+        <p className="text-xs italic">Places remaining: 32</p>
       </div>
 
       <DropApplicationForm dropId={dropId} userId={"2"} />

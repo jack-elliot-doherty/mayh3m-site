@@ -15,7 +15,7 @@ const DropCard: React.FC<dropCardProps> = ({ drop }) => {
   return (
     <Link href={`/drop/${drop.id}`}>
       <div className="border pb-4 text-center shadow-lg hover:top-2 hover:shadow-xl">
-        <img src={drop.image}></img>
+        <img alt="drop preview image" src={drop.image}></img>
         <p className="font-bold">{drop.name}</p>
       </div>
     </Link>
