@@ -15,10 +15,6 @@ const Drops = () => {
           <div key={drop.id}>
             <p>{drop.name}</p>
             <p>{drop.description}</p>
-            <p>{drop.price}</p>
-            <p>{drop.quantity}</p>
-            <p>{drop.releaseDate}</p>
-            <p>{drop.releaseTime}</p>
           </div>
         );
       })}
