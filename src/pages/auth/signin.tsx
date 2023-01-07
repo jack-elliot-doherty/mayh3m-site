@@ -103,7 +103,7 @@ export const getServerSideProps = async (context: CtxOrReq | undefined) => {
   };
 };
 
-SignIn.getLayout = function getLayout(page: any) {
+SignIn.getLayout = function getLayout(page: NextPageWithLayout) {
   return <Layout>{page}</Layout>;
 };
 
