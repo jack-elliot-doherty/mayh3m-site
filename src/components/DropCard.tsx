@@ -13,10 +13,11 @@ type dropCardProps = {
 };
 const DropCard: React.FC<dropCardProps> = ({ drop }) => {
   return (
-    <Link key={drop.id} href={`/drop/${drop.id}`}>
-      <div className="rounded-lg border text-center shadow-md">
-        <img src={drop.image}></img>
+    <Link href={`/drop/${drop.id}`}>
+      <div className="rounded-lg border text-center shadow-md hover:top-2 hover:shadow-lg">
         <p>{drop.name}</p>
+
+        <img src={drop.image}></img>
         <p>{drop.description}</p>
       </div>
     </Link>

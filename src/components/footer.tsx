@@ -65,31 +65,31 @@ const Footer = () => {
               </p>
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center gap-4 px-4 py-8">
+            <div className="flex flex-col items-center justify-center gap-4 px-4 py-12">
               <p className="text-xs font-[550]">
                 GET NOTIFIED ABOUT NEW PRODUCT ARRIVALS AND EARLY RELEASE INFO
               </p>
-              <form onSubmit={onSubmit}>
+              <form className="w-full px-5" onSubmit={onSubmit}>
                 <input
                   {...register("email", {
                     required: true,
                     pattern: /^\S+@\S+$/i,
                   })}
-                  className="w-full border-2 border-black p-2"
+                  className=" w-full border border-black p-2.5 text-xs focus:outline-none"
                   type="email"
-                  placeholder="Email"
+                  placeholder="E-MAIL"
                 />
                 <button
                   type="submit"
-                  className="w-full bg-black p-2 text-white"
+                  className="w-full bg-black p-2 text-xs font-semibold text-white"
                 >
-                  Subscribe
+                  SUBSCRIBE
                 </button>
               </form>
-              <p className="text-xs">
+              <p className="w-10/12 text-center text-xs">
                 You may unsubscribe from our list at any time. Visit our{" "}
                 <Link
-                  className="text-blue-400 underline"
+                  className="text-blue-500 underline"
                   href="/privacy-policy"
                 >
                   PRIVACY POLICY

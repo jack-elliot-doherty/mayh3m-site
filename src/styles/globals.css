@@ -8,12 +8,7 @@
 
 .Modal {
     position: absolute;
-    top: 40px;
-    left: 40px;
-    right: 40px;
-    bottom: 40px;
     background-color: rgb(255, 255, 255);
-    transition: fade-in 5s;
   }
 
 .Overlay {
@@ -23,7 +18,6 @@
     right: 0;
     bottom: 0;
     background-color: rgba(48, 48, 48, 0.648);
-    transition: fade-in 5s;
 
   }
   

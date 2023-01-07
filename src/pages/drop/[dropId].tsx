@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import Layout from "../../components/layout";
 import { api } from "../../utils/api";
 import { NextPageWithLayout } from "../_app";
+import DropApplicationForm from "../../components/DropApplicationForm";
 
 const Drop: NextPageWithLayout = () => {
   const router = useRouter();
@@ -11,12 +12,15 @@ const Drop: NextPageWithLayout = () => {
     id: dropId,
   });
   return (
-    <div className="text-center">
-      <h1>Drop</h1>
-      <p>{drop.data?.name}</p>
-      <p>{drop.data?.description}</p>
-      <img src={drop.data?.image}></img>
-    </div>
+    <>
+      <div className="text-center">
+        <h1 className="text-3xl font-bold">{drop.data?.name}</h1>
+        <img src={drop.data?.image}></img>
+        <p>{drop.data?.description}</p>
+      </div>
+
+      <DropApplicationForm dropId={dropId} userId={"2"} />
+    </>
   );
 };
 
