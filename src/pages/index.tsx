@@ -7,6 +7,7 @@ import { signIn } from "next-auth/react";
 import { api } from "../utils/api";
 import { NextPageWithLayout } from "./_app";
 import Link from "next/link";
+import DropCard from "../components/DropCard";
 
 const Home: NextPageWithLayout = () => {
   const drops = api.drop.getDrops.useQuery();
@@ -23,15 +24,7 @@ const Home: NextPageWithLayout = () => {
 
           {drops.data?.map((drop) => {
             console.log(drop);
-            return (
-              <Link key={drop.id} href={`/drop/${drop.id}`}>
-                <div>
-                  <p>{drop.name}</p>
-                  <p>{drop.description}</p>
-                  <img src={drop.image}></img>
-                </div>
-              </Link>
-            );
+            return <DropCard drop={drop} />;
           })}
         </div>
       )}

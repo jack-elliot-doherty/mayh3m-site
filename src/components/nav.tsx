@@ -11,7 +11,7 @@ const Nav = () => {
       role="navigation"
     >
       <div className="flex justify-center">
-        <Link href="/" className="pl-8 hover:opacity-50">
+        <Link href="/" className="pl-8">
           <img
             alt="Mayh3m logo"
             title="Mayh3m logo"
