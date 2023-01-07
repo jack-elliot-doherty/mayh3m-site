@@ -37,7 +37,7 @@ const Footer = () => {
   });
 
   return (
-    <footer className="flex justify-between p-6 text-xs">
+    <footer className="flex justify-between px-6 pb-6 text-xs">
       <div>
         <button
           type="button"
