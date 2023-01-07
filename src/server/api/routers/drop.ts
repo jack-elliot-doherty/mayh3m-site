@@ -2,11 +2,11 @@ import { z } from "zod";
 import { createTrpcRouter, publicProcedure, protectedProcedure } from "../trpc";
 
 export const dropRouter = createTrpcRouter({
-  getDrops: protectedProcedure.query(async ({ ctx }) => {
+  getDrops: publicProcedure.query(async ({ ctx }) => {
     const drops = await ctx.prisma.drop.findMany();
     return drops;
   }),
-  getDrop: protectedProcedure
+  getDrop: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ input, ctx }) => {
       const drop = await ctx.prisma.drop.findFirst({

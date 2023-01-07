@@ -6,21 +6,36 @@ import { signIn } from "next-auth/react";
 
 import { api } from "../utils/api";
 import { NextPageWithLayout } from "./_app";
+import Link from "next/link";
 
 const Home: NextPageWithLayout = () => {
+  const drops = api.drop.getDrops.useQuery();
+
   return (
-    <>
-      <div className="text-center">
-        <h1 className="text-2xl">Congratulations</h1>
-        <h2 className="text-3xl">
-          Welcome to Mayh<span className="text-red-600">3</span>m Clothing
-        </h2>
-        <p className="text-xl">
-          By F<span className="text-red-600">3</span>Z
-        </p>
-      </div>
-      <div className="text-center text-lg">hello</div>
-    </>
+    <div className="text-center text-lg">
+      {drops.isLoading ? (
+        <div>Loading...</div>
+      ) : drops.isError ? (
+        <div>Error: {drops.error.message}</div>
+      ) : (
+        <div>
+          <h1>Drops</h1>
+
+          {drops.data?.map((drop) => {
+            console.log(drop);
+            return (
+              <Link href={`/drop/${drop.id}`}>
+                <div key={drop.id}>
+                  <p>{drop.name}</p>
+                  <p>{drop.description}</p>
+                  <img src={drop.image}></img>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      )}
+    </div>
   );
 };
 
