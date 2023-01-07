@@ -16,7 +16,9 @@ const Drop: NextPageWithLayout = () => {
       <div className="text-center">
         <h1 className="text-3xl font-bold">{drop.data?.name}</h1>
         <img src={drop.data?.image}></img>
-        <p>{drop.data?.description}</p>
+        <p className="font-bold">{drop.data?.description}</p>
+        <p>capacity: 100</p>
+        <p>places remainaing: 32</p>
       </div>
 
       <DropApplicationForm dropId={dropId} userId={"2"} />

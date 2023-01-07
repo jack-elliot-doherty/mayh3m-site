@@ -20,7 +20,7 @@ const Home: NextPageWithLayout = () => {
         <div>Error: {drops.error.message}</div>
       ) : (
         <div>
-          <h1 className="font-bold">UPCOMING DROPS</h1>
+          <h1 className="mb-5 font-bold">UPCOMING DROPS</h1>
 
           {drops.data?.map((drop) => {
             console.log(drop);
