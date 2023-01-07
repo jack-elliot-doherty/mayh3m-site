@@ -20,10 +20,6 @@ export const dropRouter = createTrpcRouter({
         name: z.string(),
         description: z.string(),
         image: z.string(),
-        price: z.number(),
-        quantity: z.number(),
-        dropDate: z.string(),
-        dropTime: z.string(),
       })
     )
     .mutation(async ({ input, ctx }) => {
@@ -33,10 +29,6 @@ export const dropRouter = createTrpcRouter({
             name: input.name,
             description: input.description,
             image: input.image,
-            price: input.price,
-            quantity: input.quantity,
-            dropDate: input.dropDate,
-            dropTime: input.dropTime,
           },
         });
         return drop;
@@ -51,10 +43,6 @@ export const dropRouter = createTrpcRouter({
         name: z.string(),
         description: z.string(),
         image: z.string(),
-        price: z.number(),
-        quantity: z.number(),
-        dropDate: z.string(),
-        dropTime: z.string(),
       })
     )
     .mutation(async ({ input, ctx }) => {
@@ -65,10 +53,6 @@ export const dropRouter = createTrpcRouter({
             name: input.name,
             description: input.description,
             image: input.image,
-            price: input.price,
-            quantity: input.quantity,
-            dropDate: input.dropDate,
-            dropTime: input.dropTime,
           },
         });
         return drop;
