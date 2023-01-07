@@ -43,11 +43,12 @@ const DropApplicationForm: React.FC<DropApplicationFormProps> = ({
         </div>
         <div>
           <textarea
+            required
             {...register("why", { required: true })}
             className="h-40 w-full border p-2 focus:outline-none"
             placeholder="tesdt"
           />
-          {errors.why && <p>This field is required</p>}
+          {/* {errors.why && <p className="text-red-400">This field is required</p>} */}
           <button
             className="w-full bg-black p-2 text-xs text-white hover:opacity-50"
             type="submit"

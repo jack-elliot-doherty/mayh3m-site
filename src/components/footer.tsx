@@ -75,7 +75,7 @@ const Footer = () => {
                     required: true,
                     pattern: /^\S+@\S+$/i,
                   })}
-                  className=" w-full border border-black p-2.5 text-xs focus:outline-none"
+                  className=" w-full border border-black p-2.5 text-xs outline-none focus:outline-none"
                   type="email"
                   placeholder="E-MAIL"
                 />
