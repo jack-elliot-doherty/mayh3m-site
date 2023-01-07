@@ -101,7 +101,7 @@ const Footer = () => {
         </Modal>
       </div>
       <div className="w-full text-center">
-        <p className="mr-14">© 2023 MAYH3M</p>
+        <p className="mr-10">© 2023 MAYH3M</p>
       </div>
 
       <div className="flex">
