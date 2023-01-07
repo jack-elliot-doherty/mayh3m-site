@@ -3,6 +3,7 @@ import Link from "next/link";
 
 const Nav = () => {
   const { data: sessionData } = useSession();
+  // tailwind css to show element only on small screens
 
   return (
     <nav
@@ -19,7 +20,10 @@ const Nav = () => {
           ></img>
         </Link>
         {/* home should be next to the logo */}
-        <Link href="/" className="my-auto pl-8 hover:opacity-50">
+        <Link
+          href="/"
+          className="my-auto hidden pl-8 hover:opacity-50 md:block lg:block"
+        >
           HOME
         </Link>
       </div>
