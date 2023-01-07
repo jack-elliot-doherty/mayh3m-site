@@ -47,6 +47,10 @@ export const applicationRouter = createTrpcRouter({
           },
         });
 
+        if (!user) {
+          throw new Error("User does not exist");
+        }
+
         await sendConfirmationEmail(user.email, drop.name);
         return application;
       } catch (err) {
