@@ -45,6 +45,7 @@ export const authOptions: NextAuthOptions = {
   secret: env.JWT_SECRET,
   pages: {
     signIn: "/auth/signin",
+    verifyRequest: "/auth/verify-request",
   },
 };
 

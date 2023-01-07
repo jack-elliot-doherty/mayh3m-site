@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { CtxOrReq } from "next-auth/client/_utils";
 import { NextPageWithLayout } from "../_app";
 import Layout from "../../components/layout";
+import { FaFacebook, FaGoogle } from "react-icons/fa";
 
 const SignIn = ({
   providers,
@@ -25,49 +26,72 @@ const SignIn = ({
     }
   }, [session]);
   return (
-    <>
-      <section className="">
-        <div className="text-center">
-          <h1 className="text-2xl">Congratulations</h1>
-          <h2 className="text-3xl">
-            Welcome to Mayh<span className="text-red-600">3</span>m Clothing
-          </h2>
-          <p className="text-xl">
-            By F<span className="text-red-600">3</span>Z
-          </p>
-        </div>
-        <h1>SignIn to Continue</h1>
+    <div className="w-3/4 max-w-md text-center sm:w-1/2">
+      <h1 className="font-bold">SIGN IN</h1>
 
-        <div className="">
-          <form method="post" action="/api/auth/signin/email">
-            <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-            <input type="email" id="email" name="email" placeholder="Email" />
-            <button className="" type="submit">
-              Sign in with Email
-            </button>
-          </form>
-          <h1>OR</h1>
-
-          <div className="">
-            {providers
-              ? Object.values(providers).map((provider, i) => {
-                  if (provider.id !== "email") {
-                    return (
-                      <div key={provider.name} className="">
-                        <div className="">
-                          <button onClick={() => signIn(provider.id)}>
-                            {provider.name}
-                          </button>
-                        </div>
-                      </div>
-                    );
-                  }
-                })
-              : ""}
+      <div className="mt-4">
+        <form method="post" action="/api/auth/signin/email">
+          <div>
+            <div>
+              <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+            </div>
+            <div>
+              <input
+                className="w-full border p-3 text-xs focus:outline-none"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+              />
+              <button
+                className="w-full bg-black p-3 text-xs font-semibold text-white"
+                type="submit"
+              >
+                SIGN IN
+              </button>
+            </div>
           </div>
+        </form>
+      </div>
+      <div className="mt-4 inline-flex w-full items-center justify-center">
+        <hr className="my-8 h-px w-full rounded border-0  bg-gray-700" />
+        <div className="absolute left-1/2 -translate-x-1/2 bg-white px-4 ">
+          <h1 className="">OR</h1>
         </div>
-      </section>
-    </>
+      </div>
+
+      <div className="">
+        {providers
+          ? Object.values(providers).map((provider, i) => {
+              console.log(provider);
+              if (provider.id !== "email") {
+                return (
+                  <div key={provider.name} className="">
+                    <div className="">
+                      <button
+                        type="button"
+                        className="w-full border border-gray-100 bg-gray-100 p-3 font-semibold hover:bg-gray-200"
+                        onClick={() => signIn(provider.id)}
+                      >
+                        <div className="flex items-center justify-center">
+                          {provider.name === "Google" ? (
+                            <FaGoogle />
+                          ) : (
+                            <FaFacebook />
+                          )}
+                          <div className="ml-2">
+                            Continue with {provider.name}
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                );
+              }
+            })
+          : ""}
+      </div>
+    </div>
   );
 };
 
