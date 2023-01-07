@@ -24,8 +24,8 @@ const Home: NextPageWithLayout = () => {
           {drops.data?.map((drop) => {
             console.log(drop);
             return (
-              <Link href={`/drop/${drop.id}`}>
-                <div key={drop.id}>
+              <Link key={drop.id} href={`/drop/${drop.id}`}>
+                <div>
                   <p>{drop.name}</p>
                   <p>{drop.description}</p>
                   <img src={drop.image}></img>
