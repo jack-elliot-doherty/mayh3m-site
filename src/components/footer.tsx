@@ -112,7 +112,7 @@ const Footer = () => {
             rel="noopener noreferrer"
           >
             <img
-              className="h-auto w-3 hover:opacity-50"
+              className="h-auto w-4 hover:opacity-50"
               src="/static/img/instagram.png"
             ></img>
           </a>
@@ -124,7 +124,7 @@ const Footer = () => {
             rel="noopener noreferrer"
           >
             <img
-              className="h-auto w-3 hover:opacity-50"
+              className="h-auto w-4 hover:opacity-50"
               src="/static/img/twitter.png"
             ></img>
           </a>
