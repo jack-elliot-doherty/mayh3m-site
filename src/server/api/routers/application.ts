@@ -61,7 +61,7 @@ export const applicationRouter = createTrpcRouter({
     .input(z.object({ id: z.string() }))
     .query(async ({ input, ctx }) => {
       try {
-        const applicant = await ctx.prisma.applicant.findFirst({
+        const applicant = await ctx.prisma.application.findFirst({
           where: { id: input.id },
         });
         return applicant;
