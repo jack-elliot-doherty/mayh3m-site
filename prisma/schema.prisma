@@ -11,6 +11,12 @@ datasource db {
     relationMode = "prisma"
 }
 
+model NewsletterSubscriber {
+    id        String   @id @default(cuid())
+    email     String   @unique
+    createdAt DateTime @default(now())
+}
+
 model Drop {
     id           String        @id @default(cuid())
     name         String
@@ -76,7 +82,7 @@ model Session {
 model User {
     id            String        @id @default(cuid())
     name          String?
-    email         String?       @unique
+    email         String        @unique
     role          String        @default("USER")
     emailVerified DateTime?
     image         String?

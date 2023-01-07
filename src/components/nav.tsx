@@ -1,9 +1,8 @@
 import { useSession, signOut, signIn } from "next-auth/react";
-import Link from "next/link";
 
 const Nav = () => {
   const { data: sessionData } = useSession();
-  console;
+
   return (
     <nav
       className="font-mono relative flex h-16 items-center justify-between bg-white text-xs text-black"

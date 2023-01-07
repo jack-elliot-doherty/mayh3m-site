@@ -9,9 +9,14 @@ const Applications: NextPageWithLayout = () => {
   const { data: sessionData } = useSession();
   console.log(sessionData);
 
-  const applications = api.application.getAllApplications.useQuery(undefined, {
-    enabled: sessionData?.user?.role === "admin",
-  });
+  const applications = api.application.getAllApplicationsByDrop.useQuery(
+    {
+      dropId: "1",
+    },
+    {
+      enabled: sessionData?.user?.role === "admin",
+    }
+  );
 
   if (sessionData && sessionData.user?.role === "admin") {
     return (
@@ -20,8 +25,8 @@ const Applications: NextPageWithLayout = () => {
         {applications.data?.map((application) => {
           return (
             <div key={application.id}>
-              <p>{application.name}</p>
-              <p>{application.email}</p>
+              <p>{application.userId}</p>
+              <p>{application.status}</p>
               <p>{application.why}</p>
             </div>
           );

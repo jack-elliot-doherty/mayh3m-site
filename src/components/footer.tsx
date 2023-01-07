@@ -1,8 +1,75 @@
+import React, { useState } from "react";
+import { api } from "../utils/api";
+import Modal from "react-modal";
+
+const modalStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
+
 const Footer = () => {
+  const [showform, setShowForm] = useState(false);
+  const addNewsLetterSubsciber = api.newsletter.subscribe.useMutation();
+
+  const handleAddNewsLetterSubscriber = (email: string) => {
+    console.log(email);
+    // addNewsLetterSubsciber.mutate(email);
+  };
+
   return (
     <footer className="flex justify-between p-6 text-xs">
       <div>
-        <p className="text-xs hover:opacity-50">NEWSLETTER</p>
+        <button
+          onClick={() => {
+            setShowForm(true);
+          }}
+          className="text-xs hover:opacity-50"
+        >
+          NEWSLETTER
+        </button>
+        <Modal
+          shouldCloseOnEsc={true}
+          style={modalStyles}
+          isOpen={showform}
+          onRequestClose={() => setShowForm(false)}
+          contentLabel="Newsletter Modal"
+          className="Modal"
+          overlayClassName="Overlay"
+        >
+          <div className="flex flex-col items-center justify-center gap-4 px-4 py-8">
+            <p className="text-xs font-[550]">
+              GET NOTIFIED ABOUT NEW PRODUCT ARRIVALS AND EARLY RELEASE INFO
+            </p>
+            <input
+              value={"test"}
+              className="w-full border-2 border-black p-2"
+              type="email"
+              placeholder="Email"
+            ></input>
+            <button
+              className="w-full bg-black p-2 text-white"
+              onClick={() => {
+                handleAddNewsLetterSubscriber("test");
+                setShowForm(false);
+              }}
+            >
+              Subscribe
+            </button>
+            <p className="text-xs">
+              You may unsubscribe from our list at any time. Visit our{" "}
+              <a className="text-blue-400 underline" href="/">
+                PRIVACY POLICY
+              </a>{" "}
+              for more information.
+            </p>
+          </div>
+        </Modal>
       </div>
       <div className="">
         <p>© 2023 MAYH3M</p>

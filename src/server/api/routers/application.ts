@@ -2,6 +2,7 @@ import { z } from "zod";
 import crypto from "crypto";
 import { createTrpcRouter, publicProcedure, protectedProcedure } from "../trpc";
 import { sendVerificationEmail } from "../../../utils/sendVerificationEmail";
+import { sendConfirmationEmail } from "../../../utils/sendConfirmationEmail";
 
 export const applicationRouter = createTrpcRouter({
   createApplication: publicProcedure
@@ -14,17 +15,12 @@ export const applicationRouter = createTrpcRouter({
     )
     .mutation(async ({ input, ctx }) => {
       try {
-        const response = await fetch(
-          `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.NEXT_PRIVATE_RECAPTCHA_SECRET_KEY}&response=${input.token}`,
-          {
-            method: "POST",
-          }
-        );
+        const drop = await ctx.prisma.drop.findFirst({
+          where: { id: input.dropId },
+        });
 
-        const data = await response.json();
-
-        if (!data.success) {
-          return Error("Recaptcha failed");
+        if (!drop) {
+          throw new Error("Drop does not exist");
         }
 
         const application = await ctx.prisma.application.create({
@@ -51,15 +47,7 @@ export const applicationRouter = createTrpcRouter({
           },
         });
 
-        const verificationToken =
-          await ctx.prisma.applicantVerificationToken.create({
-            data: {
-              applicantId: application.id,
-              token: crypto.randomBytes(32).toString("hex"),
-            },
-          });
-
-        await sendConfirmationEmail(user.email);
+        await sendConfirmationEmail(user.email, drop.name);
         return application;
       } catch (err) {
         console.log(err);
@@ -77,14 +65,16 @@ export const applicationRouter = createTrpcRouter({
         console.log(err);
       }
     }),
-  getAllApplications: protectedProcedure.query(async ({ ctx }) => {
-    try {
-      const applicants = await ctx.prisma.applicant.findMany({
-        where: { verified: true },
-      });
-      return applicants;
-    } catch (err) {
-      console.log(err);
-    }
-  }),
+  getAllApplicationsByDrop: protectedProcedure
+    .input(z.object({ dropId: z.string() }))
+    .query(async ({ input, ctx }) => {
+      try {
+        const applications = await ctx.prisma.application.findMany({
+          where: { dropId: input.dropId },
+        });
+        return applications;
+      } catch (err) {
+        console.log(err);
+      }
+    }),
 });
