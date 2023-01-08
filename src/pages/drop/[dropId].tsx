@@ -6,7 +6,7 @@ import DropApplicationForm from "../../components/DropApplicationForm";
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 
-const Drop: NextPageWithLayout = () => {
+const Drop = () => {
   const router = useRouter();
   const { data: session, status } = useSession();
 
@@ -52,7 +52,7 @@ const Drop: NextPageWithLayout = () => {
   );
 };
 
-Drop.getLayout = function getLayout(page) {
+Drop.getLayout = function getLayout(page: NextPageWithLayout) {
   return <Layout>{page}</Layout>;
 };
 
