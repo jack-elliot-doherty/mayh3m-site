@@ -1,12 +1,13 @@
 import { useRouter } from "next/router";
 import Layout from "../../components/layout";
-import { api } from "../../utils/api";
+import { api, getBaseUrl } from "../../utils/api";
 import { NextPageWithLayout } from "../_app";
 import DropApplicationForm from "../../components/DropApplicationForm";
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
+import SignIn from "../auth/signin";
 
-const Drop = () => {
+const Drop: NextPageWithLayout = () => {
   const router = useRouter();
   const { data: session, status } = useSession();
 
@@ -22,14 +23,13 @@ const Drop = () => {
     { enabled: session ? true : false }
   );
 
-  if (!session) {
-    return {
-      redirect: {
-        destination: `/auth/signin?callbackUrl=%2Fdrop/{dropId}`,
-        permanent: false,
-      },
-    };
-  }
+  useEffect(() => {
+    if (!session) {
+      router.push(
+        `/auth/signin?callbackUrl=${"http%3A%2F%2Flocalhost%3A3000%2F"}drop%2F${dropId}%2F`
+      );
+    }
+  }, [session]);
 
   return (
     <>
@@ -52,7 +52,7 @@ const Drop = () => {
   );
 };
 
-Drop.getLayout = function getLayout(page: NextPageWithLayout) {
+Drop.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
 };
 
