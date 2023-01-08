@@ -1,4 +1,4 @@
-import NextAuth, { type NextAuthOptions } from "next-auth";
+import NextAuth, { Awaitable, type NextAuthOptions } from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
 import GoogleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
@@ -7,6 +7,8 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 import { env } from "../../../env/server.mjs";
 import { prisma } from "../../../server/db";
+
+import { customSendVerificationRequest } from "../../../utils/customSendVerificationRequest";
 
 export const authOptions: NextAuthOptions = {
   // Include user.id on session
@@ -18,12 +20,18 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
+    // redirect: async ({ url, baseUrl }: { url: string; baseUrl: string }) => {
+    //   return url.startsWith(baseUrl)
+    //     ? (Promise.resolve(url) as Awaitable<string>)
+    //     : (Promise.resolve(baseUrl) as Awaitable<string>);
+    // },
   },
   // Configure one or more authentication providers
   adapter: PrismaAdapter(prisma),
 
   providers: [
     EmailProvider({
+      from: env.EMAIL_FROM,
       server: {
         host: env.EMAIL_SERVER_HOST,
         port: parseInt(env.EMAIL_SERVER_PORT, 10),
@@ -32,7 +40,9 @@ export const authOptions: NextAuthOptions = {
           pass: env.EMAIL_SERVER_PASSWORD,
         },
       },
-      // sendVerificationRequest(params) {},
+      sendVerificationRequest({ identifier, url, provider, theme }) {
+        customSendVerificationRequest({ identifier, url, provider, theme });
+      },
     }),
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,

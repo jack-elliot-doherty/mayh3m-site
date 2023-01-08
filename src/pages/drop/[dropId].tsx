@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 
 const Drop: NextPageWithLayout = () => {
   const router = useRouter();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const dropId = router.query.dropId as string;
   const drop = api.drop.getDrop.useQuery(
@@ -17,12 +17,19 @@ const Drop: NextPageWithLayout = () => {
     },
     { enabled: session ? true : false }
   );
+  const hasApplied = api.user.hasUSerApplied.useQuery(
+    { dropId: dropId },
+    { enabled: session ? true : false }
+  );
 
-  useEffect(() => {
-    if (!session) {
-      router.push("/auth/signin");
-    }
-  }, [session]);
+  if (!session) {
+    return {
+      redirect: {
+        destination: `/auth/signin?callbackUrl=%2Fdrop/{dropId}`,
+        permanent: false,
+      },
+    };
+  }
 
   return (
     <>

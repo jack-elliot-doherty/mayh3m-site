@@ -71,6 +71,7 @@ const Footer = () => {
               </p>
               <form className="w-full px-5" onSubmit={onSubmit}>
                 <input
+                  required
                   {...register("email", {
                     required: true,
                     pattern: /^\S+@\S+$/i,

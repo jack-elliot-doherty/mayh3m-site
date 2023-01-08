@@ -1,15 +1,27 @@
 # todo:
 
-    - show screen once you apply that tells you to check your email to verify your application
-    - validation on form inputs:
-        - why cant be empty
-        - name has no special characters
-        - email is an email
-    - send verification emails
-        - token link you click that sets the corrspionding application verified field to true
-
-    - admin listing page:
+    - admin application listing page:
         -   protected view/ need to implement admin account
-        -   lists all verified applicants
+        -   lists all applications
 
     - footer
+
+    admin page
+
+    admin account
+
+    view everyone thats applied
+
+    view people thaty are accepted
+
+    view people denied
+
+    deny/accept people - button
+
+    update status
+
+    possible:
+
+    email everyone that applied:
+
+    email for denies/Accept

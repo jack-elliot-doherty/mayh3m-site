@@ -20,11 +20,6 @@ const SignIn = ({
   const router = useRouter();
   console.log(providers);
 
-  useEffect(() => {
-    if (session) {
-      router.push("/");
-    }
-  }, [session]);
   return (
     <div className="w-3/4 max-w-md text-center sm:w-1/2">
       <h1 className="font-bold">SIGN IN</h1>
