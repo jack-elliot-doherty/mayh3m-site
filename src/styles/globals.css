@@ -18,13 +18,10 @@
     right: 0;
     bottom: 0;
     background-color: rgba(48, 48, 48, 0.648);
-
-  }
-  
-  .ReactModal__Overlay {
     opacity: 0;
     transition: opacity 200ms ease-in-out;
-}
+
+  }
 
 .ReactModal__Overlay--after-open{
     opacity: 1;
