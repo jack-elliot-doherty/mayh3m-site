@@ -3,28 +3,16 @@ import Layout from "../../components/layout";
 import { api } from "../../utils/api";
 import { NextPageWithLayout } from "../_app";
 import DropApplicationForm from "../../components/DropApplicationForm";
-import { useEffect } from "react";
-import { useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 
 const Drop: NextPageWithLayout = () => {
   const router = useRouter();
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   const dropId = router.query.dropId as string;
-  const drop = api.drop.getDrop.useQuery(
-    {
-      id: dropId,
-    },
-    { enabled: session ? true : false }
-  );
-
-  // useEffect(() => {
-  //   if (!session) {
-  //     router.push(
-  //       `/auth/signin?callbackUrl=${"http%3A%2F%2Flocalhost%3A3000%2F"}drop%2F${dropId}%2F`
-  //     );
-  //   }
-  // }, [session]);
+  const drop = api.drop.getDrop.useQuery({
+    id: dropId,
+  });
 
   return (
     <>
@@ -46,6 +34,25 @@ const Drop: NextPageWithLayout = () => {
     </>
   );
 };
+
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: `/auth/signin?callbackUrl=${"http%3A%2F%2Flocalhost%3A3000%2F"}drop%2F${
+          context.params.dropId
+        }%2F`,
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
+}
 
 Drop.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
