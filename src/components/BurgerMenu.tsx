@@ -24,29 +24,29 @@ const BurgerMenu = () => {
         } `}
       >
         <button
-          className="absolute top-2 right-4 ml-12 text-5xl  text-gray-400"
+          className="absolute top-2 right-0 ml-12 text-5xl  text-gray-400"
           type="button"
           onClick={() => setOpen(false)}
         >
-          <BiX className="h-8" />
+          <BiX className="h-9" />
         </button>
-        <div className="p-10  ">
-          <div className=" hover:opacity-50">
+        <div className="space-y-3 p-4 text-xs">
+          <div className=" border-b pb-1 hover:opacity-50">
             <Link href="/">HOME</Link>
           </div>
           {sessionData && sessionData.user?.role === "ADMIN" && (
-            <div>
+            <div className="border-b pb-1 hover:opacity-50">
               <Link href="/admin/applications">ADMIN</Link>
             </div>
           )}
-          <div>
-            <Link href="/salads">ACCOUNT</Link>
+          <div className="border-b pb-1 hover:opacity-50">
+            <Link href="/account">ACCOUNT</Link>
           </div>
-          <div>
-            <Link href="/pizzas">CONTACT</Link>
+          <div className="border-b pb-1 hover:opacity-50">
+            <Link href="/contact">CONTACT</Link>
           </div>
 
-          <div>
+          <div className="border-b pb-1 hover:opacity-50">
             {sessionData ? (
               <button
                 onClick={() => {
