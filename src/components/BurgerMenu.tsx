@@ -61,7 +61,7 @@ const BurgerMenu = () => {
                   signIn();
                 }}
               >
-                SIGN OUT
+                SIGN IN
               </button>
             )}
           </div>
