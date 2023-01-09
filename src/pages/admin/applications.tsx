@@ -45,10 +45,7 @@ const Applications: NextPageWithLayout = () => {
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
 
-  const callbackUrl = getCallBackUrl(
-    context.req.headers.referer,
-    context.resolvedUrl
-  );
+  const callbackUrl = getCallBackUrl(context.req.headers.referer);
 
   if (!session) {
     return {
