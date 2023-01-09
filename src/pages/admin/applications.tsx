@@ -1,5 +1,5 @@
 import { NextPageWithLayout } from "../_app";
-import { signIn, useSession } from "next-auth/react";
+import { getSession, signIn, useSession } from "next-auth/react";
 
 import Layout from "../../components/layout";
 
@@ -41,6 +41,25 @@ const Applications: NextPageWithLayout = () => {
     );
   }
 };
+
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: `/auth/signin?callbackUrl=${"http%3A%2F%2Flocalhost%3A3000%2F"}drop%2F${
+          context.params.dropId
+        }%2F`,
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
+}
 
 Applications.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;

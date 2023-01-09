@@ -1,3 +1,4 @@
+import { getSession } from "next-auth/react";
 import AdminSideNav from "../../components/AdminSideNav";
 import Layout from "../../components/layout";
 import { api } from "../../utils/api";
@@ -31,6 +32,25 @@ const Drops: NextPageWithLayout = () => {
     </>
   );
 };
+
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: `/auth/signin?callbackUrl=${"http%3A%2F%2Flocalhost%3A3000%2F"}drop%2F${
+          context.params.dropId
+        }%2F`,
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
+}
 
 Drops.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
