@@ -39,9 +39,11 @@ const BurgerMenu = () => {
               <Link href="/admin/applications">ADMIN</Link>
             </div>
           )}
-          <div className="border-b pb-1 hover:opacity-50">
-            <Link href="/account">ACCOUNT</Link>
-          </div>
+          {sessionData && (
+            <div className="border-b pb-1 hover:opacity-50">
+              <Link href="/account">ACCOUNT</Link>
+            </div>
+          )}
           <div className="border-b pb-1 hover:opacity-50">
             <Link href="/contact">CONTACT</Link>
           </div>
