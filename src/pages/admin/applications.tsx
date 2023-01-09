@@ -8,36 +8,28 @@ import AdminSideNav from "../../components/AdminSideNav";
 
 const Applications: NextPageWithLayout = () => {
   const { data: sessionData } = useSession();
-  console.log(sessionData);
 
-  // const applications = api.application.getAllApplicationsByDrop.useQuery(
-  //   {
-  //     dropId: "1",
-  //   },
-  //   {
-  //     enabled: sessionData?.user?.role === "ADMIN",
-  //   }
-  // );
+  const applications = api.application.getAllApplications.useQuery(undefined, {
+    enabled: sessionData?.user?.role === "ADMIN",
+  });
 
   if (sessionData && sessionData.user?.role === "ADMIN") {
     return (
       <>
-        <h1 className=" font-bold">APPLICATIONS</h1>
+        <h1 className="font-bold">APPLICATIONS</h1>
 
         <div className="w-full md:flex">
           <AdminSideNav />
           <div className="mr-60 w-full text-center">
-            <p>test</p>
+            {applications.data?.map((application) => {
+              console.log(application);
+              return (
+                <div key={application.id}>
+                  <p>{application.why}</p>
+                </div>
+              );
+            })}
           </div>
-          {/* {applications.data?.map((application) => {
-          return (
-            <div key={application.id}>
-              <p>{application.userId}</p>
-              <p>{application.status}</p>
-              <p>{application.why}</p>
-            </div>
-          );
-        })} */}
         </div>
       </>
     );

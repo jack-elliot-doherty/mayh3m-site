@@ -95,4 +95,12 @@ export const applicationRouter = createTrpcRouter({
         console.log(err);
       }
     }),
+  getAllApplications: protectedProcedure.query(async ({ ctx }) => {
+    try {
+      const applications = await ctx.prisma.application.findMany();
+      return applications;
+    } catch (err) {
+      console.log(err);
+    }
+  }),
 });

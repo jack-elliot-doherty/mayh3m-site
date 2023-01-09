@@ -17,9 +17,11 @@ const Drops: NextPageWithLayout = () => {
         <AdminSideNav />
         <div className="mr-60 w-full text-center">
           {drops.data?.map((drop) => {
+            console.log(drop);
             return (
-              <div key={drop.id}>
+              <div className="text-center" key={drop.id}>
                 <p>{drop.name}</p>
+                <img className="m-auto" src={drop.image} alt={drop.name} />
                 <p>{drop.description}</p>
               </div>
             );

@@ -5,6 +5,7 @@ import Layout from "../components/layout";
 import { NextPageWithLayout } from "./_app";
 
 import { api } from "../utils/api";
+import UserAccountSideNav from "../components/UserAccountSideNav";
 
 const Account = () => {
   const { data: session } = useSession();
@@ -18,11 +19,16 @@ const Account = () => {
   }
 
   return (
-    <div>
+    <>
       <h1>Account</h1>
 
-      <p>Account details</p>
-    </div>
+      <div className="w-full md:flex">
+        <UserAccountSideNav />
+        <div className="mr-60 w-full text-center">
+          <p>Account details</p>
+        </div>
+      </div>
+    </>
   );
 };
 
