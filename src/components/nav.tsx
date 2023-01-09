@@ -56,7 +56,7 @@ const Nav = () => {
               onClick={() => {
                 signOut();
               }}
-              className="pr-8 hover:opacity-50"
+              className="min-w-[5.6rem] pr-8 hover:opacity-50"
             >
               SIGN OUT
             </button>
@@ -64,10 +64,10 @@ const Nav = () => {
         ) : (
           <button
             type="button"
-            className="pr-8 hover:opacity-50"
+            className="min-w-[5.6rem] pr-8 hover:opacity-50"
             onClick={() => signIn()}
           >
-            SIGN IN
+            SIGN IN{" "}
           </button>
         )}
       </div>

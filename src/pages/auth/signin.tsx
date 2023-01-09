@@ -3,6 +3,7 @@ import {
   signIn,
   getCsrfToken,
   useSession,
+  getSession,
 } from "next-auth/react";
 import { InferGetServerSidePropsType } from "next";
 import { useEffect } from "react";
@@ -16,7 +17,7 @@ const SignIn = ({
   providers,
   csrfToken,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   const router = useRouter();
   console.log(providers);
   const callbackUrl = router.query.callbackUrl as string;
@@ -96,6 +97,17 @@ const SignIn = ({
 };
 
 export const getServerSideProps = async (context: CtxOrReq | undefined) => {
+  const session = await getSession(context);
+
+  if (session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
   const providers = await getProviders();
   const csrfToken = await getCsrfToken(context);
   return {
