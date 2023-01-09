@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
+import { FaBars } from "react-icons/fa";
 
 const BurgerMenu = () => {
   const [open, setOpen] = useState(false);
@@ -8,12 +9,10 @@ const BurgerMenu = () => {
   return (
     <div className="visible md:hidden lg:hidden">
       <button
-        className="my-auto space-y-2 py-2 pl-4 hover:opacity-50"
+        className="my-auto h-full space-y-1 py-2 pl-4 hover:opacity-50"
         onClick={() => setOpen(!open)}
       >
-        <div className="h-0.5 w-8 bg-gray-600" />
-        <div className="h-0.5 w-8 bg-gray-600" />
-        <div className="h-0.5 w-8 bg-gray-600" />
+        <FaBars className="h-4 w-4" />
       </button>
       <div className={`burger-menu__content hidden ${open ? "open" : ""}`}>
         <div className="burger-menu__content__inner">
