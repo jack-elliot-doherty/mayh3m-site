@@ -21,10 +21,12 @@ const Applications: NextPageWithLayout = () => {
 
   if (sessionData && sessionData.user?.role === "ADMIN") {
     return (
-      <div className="flex w-full flex-wrap">
-        <AdminSideNav />
-        <h1>Applicants</h1>
-        {/* {applications.data?.map((application) => {
+      <>
+        <h1 className=" font-bold">APPLICATIONS</h1>
+
+        <div className="flex w-3/4 flex-wrap">
+          <AdminSideNav />
+          {/* {applications.data?.map((application) => {
           return (
             <div key={application.id}>
               <p>{application.userId}</p>
@@ -33,7 +35,8 @@ const Applications: NextPageWithLayout = () => {
             </div>
           );
         })} */}
-      </div>
+        </div>
+      </>
     );
   } else {
     return (

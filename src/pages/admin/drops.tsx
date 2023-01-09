@@ -1,3 +1,4 @@
+import AdminSideNav from "../../components/AdminSideNav";
 import Layout from "../../components/layout";
 import { api } from "../../utils/api";
 import { NextPageWithLayout } from "../_app";
@@ -9,8 +10,12 @@ const Drops: NextPageWithLayout = () => {
   if (drops.isError) return <div>Error: {drops.error.message}</div>;
 
   return (
-    <div>
-      <h1>Drops</h1>
+    <>
+      <h1 className=" font-bold">DROPS</h1>
+
+      <div className="flex w-3/4">
+        <AdminSideNav />
+      </div>
 
       {drops.data?.map((drop) => {
         return (
@@ -20,7 +25,7 @@ const Drops: NextPageWithLayout = () => {
           </div>
         );
       })}
-    </div>
+    </>
   );
 };
 
