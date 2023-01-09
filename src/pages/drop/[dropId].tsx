@@ -1,15 +1,14 @@
 import { useRouter } from "next/router";
 import Layout from "../../components/layout";
-import { api, getBaseUrl } from "../../utils/api";
+import { api } from "../../utils/api";
 import { NextPageWithLayout } from "../_app";
 import DropApplicationForm from "../../components/DropApplicationForm";
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
-import SignIn from "../auth/signin";
 
 const Drop: NextPageWithLayout = () => {
   const router = useRouter();
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   const dropId = router.query.dropId as string;
   const drop = api.drop.getDrop.useQuery(
@@ -18,18 +17,14 @@ const Drop: NextPageWithLayout = () => {
     },
     { enabled: session ? true : false }
   );
-  const hasApplied = api.user.hasUSerApplied.useQuery(
-    { dropId: dropId },
-    { enabled: session ? true : false }
-  );
 
-  useEffect(() => {
-    if (!session) {
-      router.push(
-        `/auth/signin?callbackUrl=${"http%3A%2F%2Flocalhost%3A3000%2F"}drop%2F${dropId}%2F`
-      );
-    }
-  }, [session]);
+  // useEffect(() => {
+  //   if (!session) {
+  //     router.push(
+  //       `/auth/signin?callbackUrl=${"http%3A%2F%2Flocalhost%3A3000%2F"}drop%2F${dropId}%2F`
+  //     );
+  //   }
+  // }, [session]);
 
   return (
     <>
@@ -43,7 +38,7 @@ const Drop: NextPageWithLayout = () => {
             <p className="text-xs italic">Places remaining: 32</p>
           </div>
 
-          <DropApplicationForm dropId={dropId} userId={"2"} />
+          <DropApplicationForm dropId={dropId} />
         </>
       ) : (
         <div>Loading...</div>

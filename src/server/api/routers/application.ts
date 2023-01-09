@@ -3,10 +3,9 @@ import { createTrpcRouter, publicProcedure, protectedProcedure } from "../trpc";
 import { sendConfirmationEmail } from "../../../utils/sendConfirmationEmail";
 
 export const applicationRouter = createTrpcRouter({
-  createApplication: publicProcedure
+  createApplication: protectedProcedure
     .input(
       z.object({
-        userId: z.string(),
         dropId: z.string(),
         why: z.string(),
       })
@@ -21,21 +20,42 @@ export const applicationRouter = createTrpcRouter({
           throw new Error("Drop does not exist");
         }
 
+        // check if user has already applied to drop
+        let user = await ctx.prisma.user.findFirst({
+          where: {
+            id: ctx.session.user.id,
+            applications: {
+              some: {
+                dropId: input.dropId,
+              },
+            },
+          },
+        });
+
+        // if user has already applied to drop, throw error
+        if (user) {
+          throw new Error("User has already applied to drop");
+        }
+
+        user = await ctx.prisma.user.findFirst({
+          where: { id: ctx.session.user.id },
+        });
+
+        if (!user) {
+          throw new Error("User does not exist");
+        }
+
         const application = await ctx.prisma.application.create({
           data: {
-            userId: input.userId,
+            userId: ctx.session.user.id,
             dropId: input.dropId,
             why: input.why,
           },
         });
 
-        const user = await ctx.prisma.user.findFirst({
-          where: { id: input.userId },
-        });
-
         //update user to have applied to drop
         await ctx.prisma.user.update({
-          where: { id: input.userId },
+          where: { id: ctx.session.user.id },
           data: {
             applications: {
               connect: {
@@ -44,10 +64,6 @@ export const applicationRouter = createTrpcRouter({
             },
           },
         });
-
-        if (!user) {
-          throw new Error("User does not exist");
-        }
 
         await sendConfirmationEmail(user.email, drop.name);
         return application;
