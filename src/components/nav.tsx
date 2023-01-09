@@ -1,5 +1,6 @@
 import { useSession, signOut, signIn } from "next-auth/react";
 import Link from "next/link";
+import BurgerMenu from "./BurgerMenu";
 
 const Nav = () => {
   const { data: sessionData } = useSession();
@@ -11,6 +12,7 @@ const Nav = () => {
       role="navigation"
     >
       <div className="flex justify-center">
+        <BurgerMenu />
         <Link href="/" className="pl-8">
           <img
             alt="Mayh3m logo"

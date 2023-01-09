@@ -19,7 +19,7 @@ export async function customSendVerificationRequest({
   const result = await transport.sendMail({
     to: identifier,
     from: provider.from,
-    subject: `Sign in | ${host}`,
+    subject: `Sign in | MAYH3M`,
     text: text({ url, host }),
     html: html({ url, host, theme, identifier }),
   });

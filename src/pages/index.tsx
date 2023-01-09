@@ -9,7 +9,7 @@ const Home: NextPageWithLayout = () => {
   const drops = api.drop.getDrops.useQuery();
 
   return (
-    <div className="text-center text-lg">
+    <div className="text-center ">
       {drops.isLoading ? (
         <div>Loading...</div>
       ) : drops.isError ? (
