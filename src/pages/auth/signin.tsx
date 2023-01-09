@@ -19,6 +19,7 @@ const SignIn = ({
   const { data: session } = useSession();
   const router = useRouter();
   console.log(providers);
+  const callbackUrl = router.query.callbackUrl as string;
 
   return (
     <div className="w-3/4 max-w-md text-center sm:w-1/2">
@@ -66,7 +67,11 @@ const SignIn = ({
                       <button
                         type="button"
                         className="mb-3 w-full border border-gray-100 bg-gray-100 p-3 font-semibold hover:bg-gray-200"
-                        onClick={() => signIn(provider.id)}
+                        onClick={() =>
+                          signIn(provider.id, {
+                            callbackUrl: `${callbackUrl}`,
+                          })
+                        }
                       >
                         <div className="flex items-center justify-center">
                           {provider.name === "Google" ? (
