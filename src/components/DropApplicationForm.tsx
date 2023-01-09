@@ -51,12 +51,12 @@ const DropApplicationForm: React.FC<DropApplicationFormProps> = ({
           </p>
           <p className="mt-4 text-xl font-bold">GOOD LUCK</p>
           <p className="text-xs italic">FROM THE MAYH3M TEAM</p>
-          <p className="mt-8 text-xs italic">
+          <p className=" mb-2 mt-8 text-xs italic">
             Check out our other upcoming drops
           </p>
-          <button className="mt-2 bg-black p-2 text-sm font-bold text-white">
-            <Link href="/">UPCOMING DROPS</Link>
-          </button>
+          <Link className=" bg-black p-2 text-sm font-bold text-white" href="/">
+            UPCOMING DROPS
+          </Link>
         </div>
       ) : (
         <div className="w-3/4 text-center sm:w-1/2">
