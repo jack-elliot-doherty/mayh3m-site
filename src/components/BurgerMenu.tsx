@@ -7,7 +7,7 @@ const BurgerMenu = () => {
   console.log(open);
 
   return (
-    <div className="visible md:hidden lg:hidden">
+    <div className="visible p-3 md:hidden lg:hidden">
       <button
         className="my-auto h-full space-y-1 py-2 pl-4 hover:opacity-50"
         onClick={() => setOpen(!open)}
