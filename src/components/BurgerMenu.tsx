@@ -2,6 +2,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 import { FaBars } from "react-icons/fa";
+import { BiX } from "react-icons/bi";
 
 const BurgerMenu = () => {
   const { data: sessionData } = useSession();
@@ -27,7 +28,7 @@ const BurgerMenu = () => {
           type="button"
           onClick={() => setOpen(false)}
         >
-          &times;
+          <BiX className="h-8" />
         </button>
         <div className="p-10  ">
           <div className=" hover:opacity-50">
