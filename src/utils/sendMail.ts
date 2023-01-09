@@ -3,6 +3,7 @@ import nodemailer from "nodemailer";
 export const sendMail = async (
   email: string,
   subject: string,
+  html: string,
   text: string
 ) => {
   try {
@@ -21,6 +22,7 @@ export const sendMail = async (
       from: process.env.USER,
       to: email,
       subject: subject,
+      html: html,
       text: text,
     });
     console.log("email sent sucessfully");

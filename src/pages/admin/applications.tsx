@@ -4,25 +4,27 @@ import { signIn, useSession } from "next-auth/react";
 import Layout from "../../components/layout";
 
 import { api } from "../../utils/api";
+import AdminSideNav from "../../components/AdminSideNav";
 
 const Applications: NextPageWithLayout = () => {
   const { data: sessionData } = useSession();
   console.log(sessionData);
 
-  const applications = api.application.getAllApplicationsByDrop.useQuery(
-    {
-      dropId: "1",
-    },
-    {
-      enabled: sessionData?.user?.role === "admin",
-    }
-  );
+  // const applications = api.application.getAllApplicationsByDrop.useQuery(
+  //   {
+  //     dropId: "1",
+  //   },
+  //   {
+  //     enabled: sessionData?.user?.role === "ADMIN",
+  //   }
+  // );
 
-  if (sessionData && sessionData.user?.role === "admin") {
+  if (sessionData && sessionData.user?.role === "ADMIN") {
     return (
-      <>
+      <div className="flex w-full flex-wrap">
+        <AdminSideNav />
         <h1>Applicants</h1>
-        {applications.data?.map((application) => {
+        {/* {applications.data?.map((application) => {
           return (
             <div key={application.id}>
               <p>{application.userId}</p>
@@ -30,8 +32,8 @@ const Applications: NextPageWithLayout = () => {
               <p>{application.why}</p>
             </div>
           );
-        })}
-      </>
+        })} */}
+      </div>
     );
   } else {
     return (

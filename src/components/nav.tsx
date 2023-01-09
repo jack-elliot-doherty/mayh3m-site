@@ -26,6 +26,14 @@ const Nav = () => {
         >
           HOME
         </Link>
+        {sessionData && sessionData.user?.role === "ADMIN" && (
+          <Link
+            href="/admin/applications"
+            className="my-auto hidden pl-8 hover:opacity-50 md:block lg:block"
+          >
+            ADMIN
+          </Link>
+        )}
       </div>
       <div className="flex">
         {sessionData && sessionData.user?.role === "admin" && (
@@ -34,15 +42,23 @@ const Nav = () => {
           </Link>
         )}
         {sessionData ? (
-          <button
-            type="button"
-            onClick={() => {
-              signOut();
-            }}
-            className="pr-8 hover:opacity-50"
-          >
-            SIGN OUT
-          </button>
+          <>
+            <Link
+              href="/admin/applications"
+              className="my-auto mr-8 hidden pl-8 hover:opacity-50 md:block lg:block"
+            >
+              ACCOUNT
+            </Link>
+            <button
+              type="button"
+              onClick={() => {
+                signOut();
+              }}
+              className="pr-8 hover:opacity-50"
+            >
+              SIGN OUT
+            </button>
+          </>
         ) : (
           <button
             type="button"

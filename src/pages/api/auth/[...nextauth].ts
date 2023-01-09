@@ -16,15 +16,10 @@ export const authOptions: NextAuthOptions = {
     session({ session, user }) {
       if (session.user) {
         session.user.id = user.id;
-        // session.user.role = user.role;
+        session.user.role = user.role;
       }
       return session;
     },
-    // redirect: async ({ url, baseUrl }: { url: string; baseUrl: string }) => {
-    //   return url.startsWith(baseUrl)
-    //     ? (Promise.resolve(url) as Awaitable<string>)
-    //     : (Promise.resolve(baseUrl) as Awaitable<string>);
-    // },
   },
   // Configure one or more authentication providers
   adapter: PrismaAdapter(prisma),
