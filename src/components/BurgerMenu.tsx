@@ -20,7 +20,7 @@ const BurgerMenu = () => {
       </button>
       <div
         className={`fixed top-0 left-0 z-10 h-full flex-none overflow-x-hidden bg-zinc-800 pt-14 text-lg text-white transition-all duration-500 ${
-          open ? "w-96" : "w-0"
+          open ? "w-80" : "w-0"
         } `}
       >
         <button
