@@ -13,16 +13,18 @@ const Drops: NextPageWithLayout = () => {
     <>
       <h1 className=" font-bold">DROPS</h1>
 
-      <div className="w-3/4 lg:flex">
+      <div className="w-full md:flex">
         <AdminSideNav />
-        {drops.data?.map((drop) => {
-          return (
-            <div key={drop.id}>
-              <p>{drop.name}</p>
-              <p>{drop.description}</p>
-            </div>
-          );
-        })}
+        <div className="mr-60 w-full text-center">
+          {drops.data?.map((drop) => {
+            return (
+              <div key={drop.id}>
+                <p>{drop.name}</p>
+                <p>{drop.description}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </>
   );

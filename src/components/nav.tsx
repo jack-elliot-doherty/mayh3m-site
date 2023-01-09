@@ -44,7 +44,7 @@ const Nav = () => {
         {sessionData ? (
           <>
             <Link
-              href="/admin/applications"
+              href="/account"
               className="my-auto mr-8 hidden pl-8 hover:opacity-50 md:block lg:block"
             >
               ACCOUNT

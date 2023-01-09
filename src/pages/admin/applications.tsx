@@ -24,9 +24,11 @@ const Applications: NextPageWithLayout = () => {
       <>
         <h1 className=" font-bold">APPLICATIONS</h1>
 
-        <div className="w-3/4 flex-wrap lg:flex">
+        <div className="w-full md:flex">
           <AdminSideNav />
-          <p>test</p>
+          <div className="mr-60 w-full text-center">
+            <p>test</p>
+          </div>
           {/* {applications.data?.map((application) => {
           return (
             <div key={application.id}>
