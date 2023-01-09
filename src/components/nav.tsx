@@ -4,15 +4,15 @@ import BurgerMenu from "./BurgerMenu";
 
 const Nav = () => {
   const { data: sessionData } = useSession();
-  // tailwind css to show element only on small screens
 
   return (
     <nav
       className="font-mono relative flex h-16 items-center justify-between bg-white text-xs text-black"
       role="navigation"
     >
+      <BurgerMenu />
+
       <div className="flex justify-center">
-        <BurgerMenu />
         <Link href="/" className="pl-8">
           <img
             alt="Mayh3m logo"

@@ -6,23 +6,26 @@ const BurgerMenu = () => {
   console.log(open);
 
   return (
-    <div className="hidden">
-      <div className="space-y-2" onClick={() => setOpen(!open)}>
+    <div className="visible md:hidden lg:hidden">
+      <button
+        className="my-auto space-y-2 py-2 pl-2 hover:opacity-50"
+        onClick={() => setOpen(!open)}
+      >
         <div className="h-0.5 w-8 bg-gray-600" />
         <div className="h-0.5 w-8 bg-gray-600" />
         <div className="h-0.5 w-8 bg-gray-600" />
-      </div>
-      <div className={`burger-menu__content ${open ? "open" : ""}`}>
+      </button>
+      <div className={`burger-menu__content hidden ${open ? "open" : ""}`}>
         <div className="burger-menu__content__inner">
           <ul>
             <li>
-              <Link href="/">Home</Link>
+              <Link href="/">HOME</Link>
             </li>
             <li>
-              <Link href="/about">About </Link>
+              <Link href="/account">ACCOUNT </Link>
             </li>
             <li>
-              <Link href="/contact">Contact</Link>
+              <Link href="/contact">CONTACT</Link>
             </li>
           </ul>
         </div>
