@@ -5,6 +5,7 @@ import Layout from "../../components/layout";
 
 import { api } from "../../utils/api";
 import AdminSideNav from "../../components/AdminSideNav";
+import { getCallBackUrl } from "../../utils/getCallBackUrl";
 
 const Applications: NextPageWithLayout = () => {
   const { data: sessionData } = useSession();
@@ -41,16 +42,18 @@ const Applications: NextPageWithLayout = () => {
     );
   }
 };
-
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
+
+  const callbackUrl = getCallBackUrl(
+    context.req.headers.referer,
+    context.resolvedUrl
+  );
 
   if (!session) {
     return {
       redirect: {
-        destination: `/auth/signin?callbackUrl=${"http%3A%2F%2Flocalhost%3A3000%2F"}drop%2F${
-          context.params.dropId
-        }%2F`,
+        destination: `/auth/signin?callbackUrl=${callbackUrl}`,
         permanent: false,
       },
     };

@@ -4,6 +4,7 @@ import { api } from "../../utils/api";
 import { NextPageWithLayout } from "../_app";
 import DropApplicationForm from "../../components/DropApplicationForm";
 import { getSession } from "next-auth/react";
+import { getCallBackUrl } from "../../utils/getCallBackUrl";
 
 const Drop: NextPageWithLayout = () => {
   const router = useRouter();
@@ -38,12 +39,15 @@ const Drop: NextPageWithLayout = () => {
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
 
+  const callbackUrl = getCallBackUrl(
+    context.req.headers.referer,
+    context.resolvedUrl
+  );
+
   if (!session) {
     return {
       redirect: {
-        destination: `/auth/signin?callbackUrl=${"http%3A%2F%2Flocalhost%3A3000%2F"}drop%2F${
-          context.params.dropId
-        }%2F`,
+        destination: `/auth/signin?callbackUrl=${callbackUrl}`,
         permanent: false,
       },
     };

@@ -35,7 +35,7 @@ const Drops: NextPageWithLayout = () => {
 
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
-
+  console.log("params", context.params);
   if (!session) {
     return {
       redirect: {
