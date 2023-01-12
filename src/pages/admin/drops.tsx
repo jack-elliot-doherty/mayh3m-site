@@ -4,6 +4,7 @@ import Layout from "../../components/layout";
 import { api } from "../../utils/api";
 import { getCallBackUrl } from "../../utils/getCallBackUrl";
 import { NextPageWithLayout } from "../_app";
+import Image from "next/image";
 
 const Drops: NextPageWithLayout = () => {
   const drops = api.drop.getDrops.useQuery();
@@ -23,7 +24,13 @@ const Drops: NextPageWithLayout = () => {
             return (
               <div className="text-center" key={drop.id}>
                 <p>{drop.name}</p>
-                <img className="m-auto" src={drop.image} alt={drop.name} />
+                <Image
+                  height={800}
+                  width={800}
+                  className="m-auto"
+                  src={drop.image}
+                  alt={drop.name}
+                />
                 <p>{drop.description}</p>
               </div>
             );

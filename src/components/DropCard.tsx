@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-import { type } from "os";
 import React from "react";
 
 type Drop = {
@@ -14,9 +14,15 @@ type dropCardProps = {
 const DropCard: React.FC<dropCardProps> = ({ drop }) => {
   return (
     <Link href={`/drop/${drop.id}`}>
-      <div className="border pb-4 text-center shadow-lg hover:top-2 hover:shadow-xl">
-        <img alt="drop preview image" src={drop.image}></img>
-        <p className="text-xl font-bold">{drop.name}</p>
+      <div className="text-center">
+        <Image
+          width="800"
+          height="800"
+          alt="drop preview image"
+          className="m-auto"
+          src={drop.image}
+        ></Image>
+        <p className="mt-5 text-4xl font-bold">{drop.name}</p>
       </div>
     </Link>
   );

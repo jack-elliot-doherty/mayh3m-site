@@ -1,4 +1,3 @@
-import { redirect } from "next/dist/server/api-utils";
 import { z } from "zod";
 import { createTrpcRouter, publicProcedure, protectedProcedure } from "../trpc";
 
@@ -13,6 +12,7 @@ export const dropRouter = createTrpcRouter({
       const drop = await ctx.prisma.drop.findFirst({
         where: { id: input.id },
       });
+      console.log(drop);
       return drop;
     }),
   createDrop: protectedProcedure

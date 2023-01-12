@@ -21,8 +21,6 @@ const DropApplicationForm: React.FC<DropApplicationFormProps> = ({
     { enabled: session ? true : false, cacheTime: 0 }
   );
 
-  console.log(!hasApplied.data, hasApplied.isLoading);
-
   const {
     register,
     handleSubmit,
@@ -30,7 +28,6 @@ const DropApplicationForm: React.FC<DropApplicationFormProps> = ({
   } = useForm<FormData>();
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
     createNewApplication.mutate({
       dropId: dropId,
       why: data.why,
@@ -62,7 +59,7 @@ const DropApplicationForm: React.FC<DropApplicationFormProps> = ({
 
   return (
     <>
-      <div className="w-3/4 text-center sm:w-1/2">
+      <div className="w-3/4 text-center ">
         <form onSubmit={onSubmit}>
           <div className="">
             <p className="text-lg font-bold">JOIN THE DROP</p>
@@ -70,14 +67,14 @@ const DropApplicationForm: React.FC<DropApplicationFormProps> = ({
               Apply below for a chance to be involved in the drop.
             </p>
             <p className="mb-4 text-xs italic">
-              100 units will be released, only those who apply and are accepted
-              will get to the chance to purchase.
+              Limited units will be released, only those who apply and are
+              accepted will get to the chance to purchase.
             </p>
             <label className="text-xs font-bold" htmlFor="why">
               WHY DO YOU WANT TO JOIN THIS DROP?
             </label>
           </div>
-          <div>
+          <div className="mx-auto lg:w-3/4">
             <textarea
               required
               {...register("why", {
@@ -85,7 +82,7 @@ const DropApplicationForm: React.FC<DropApplicationFormProps> = ({
                 maxLength: 1000,
                 minLength: 10,
               })}
-              className="mt-2 h-40 w-full border p-2 focus:outline-none"
+              className="mx-auto h-40 w-full border p-2 focus:outline-none"
               placeholder="why..."
             />
 

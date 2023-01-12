@@ -5,26 +5,33 @@ import { NextPageWithLayout } from "../_app";
 import DropApplicationForm from "../../components/DropApplicationForm";
 import { getSession } from "next-auth/react";
 import { getCallBackUrl } from "../../utils/getCallBackUrl";
+import Image from "next/image";
 
 const Drop: NextPageWithLayout = () => {
   const router = useRouter();
-  // const { data: session } = useSession();
 
   const dropId = router.query.dropId as string;
   const drop = api.drop.getDrop.useQuery({
     id: dropId,
   });
+  console.log(drop.data);
 
   return (
     <>
       {drop.data ? (
         <>
-          <div className="text-center">
-            <h1 className="text-3xl font-bold">{drop.data?.name}</h1>
-            <img alt="drop preview image" src={drop.data?.image}></img>
-            <p className="font-bold">{drop.data?.description}</p>
-            <p className="text-xs italic">Capacity: 100</p>
-            <p className="text-xs italic">Places remaining: 32</p>
+          <div className="w-3/4 text-center">
+            <h1 className="mb-2 text-3xl font-bold">{drop.data?.name}</h1>
+            <Image
+              priority
+              width={600}
+              height={600}
+              className="m-auto "
+              alt="drop preview image"
+              src={drop.data?.image}
+            ></Image>
+            <p className="mt-5 font-bold">{drop.data?.description}</p>
+            <p className="text-xs italic">Capacity: {drop.data.capacity}</p>
           </div>
 
           <DropApplicationForm dropId={dropId} />
