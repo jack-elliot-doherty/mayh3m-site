@@ -32,20 +32,48 @@ const BurgerMenu = () => {
         </button>
         <div className="space-y-3 p-4 text-xs">
           <div className=" border-b pb-1 hover:opacity-50">
-            <Link href="/">HOME</Link>
+            <Link
+              onClick={() => {
+                setOpen(false);
+              }}
+              href="/"
+            >
+              HOME
+            </Link>
           </div>
           {sessionData && sessionData.user?.role === "ADMIN" && (
             <div className="border-b pb-1 hover:opacity-50">
-              <Link href="/admin/applications">ADMIN</Link>
+              <Link
+                onClick={() => {
+                  setOpen(false);
+                }}
+                href="/admin/applications"
+              >
+                ADMIN
+              </Link>
             </div>
           )}
           {sessionData && (
             <div className="border-b pb-1 hover:opacity-50">
-              <Link href="/account">ACCOUNT</Link>
+              <Link
+                onClick={() => {
+                  setOpen(false);
+                }}
+                href="/account"
+              >
+                ACCOUNT
+              </Link>
             </div>
           )}
           <div className="border-b pb-1 hover:opacity-50">
-            <Link href="/contact">CONTACT</Link>
+            <Link
+              onClick={() => {
+                setOpen(false);
+              }}
+              href="/contact"
+            >
+              CONTACT
+            </Link>
           </div>
 
           <div className="border-b pb-1 hover:opacity-50">
