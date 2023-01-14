@@ -19,7 +19,7 @@ const UserAccountSideNav = () => {
           </li>
         )}
         <li className="my-2 border-b border-black pb-2">
-          <Link href="/contact">
+          <Link href="mailto:mayh3mbyf3z@gmail.com">
             <span className="hover:opacity-50">CONTACT US</span>
           </Link>
         </li>

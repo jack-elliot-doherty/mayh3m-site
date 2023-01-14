@@ -61,7 +61,7 @@ const BurgerMenu = () => {
             onClick={() => {
               setOpen(false);
             }}
-            href="/contact"
+            href="mailto:mayh3mbyf3z@gmail.com"
           >
             <div className="mb-2 border-b pb-1 hover:opacity-50">CONTACT</div>
           </Link>
