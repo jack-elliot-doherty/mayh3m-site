@@ -1,27 +1,20 @@
 # todo:
 
     - admin application listing page:
-        -   protected view/ need to implement admin account
-        -   lists all applications
+        - lists all applications
+        - accept/decline applications
+        - create/delete/update drops drops
 
-    - footer
+    - newsletter
+        - unsubscribe
+        - newsletter subscribe confirmation email
 
-    admin page
 
-    admin account
+    - email login in prod not working
+    - discord login
 
-    view everyone thats applied
+    - account details dashboard
+        - delete account
+        - edit details
 
-    view people thaty are accepted
-
-    view people denied
-
-    deny/accept people - button
-
-    update status
-
-    possible:
-
-    email everyone that applied:
-
-    email for denies/Accept
+    - redirects are kinda jank - need to think about how these should work
