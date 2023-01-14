@@ -21,8 +21,8 @@ const DropCard: React.FC<dropCardProps> = ({ drop }) => {
         className="m-auto"
         src={drop.image}
       ></Image>
-      <p className="mt-5 text-2xl font-bold">{drop.name}</p>
-      <p className=" text-xs">{drop.description}</p>
+      {/* <p className="mt-5 text-2xl font-bold">{drop.name}</p> */}
+      <p className="mt-2 text-xs">{drop.description}</p>
     </Link>
   );
 };
