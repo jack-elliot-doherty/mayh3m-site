@@ -25,9 +25,8 @@ const Drops: NextPageWithLayout = () => {
               <div className="text-center" key={drop.id}>
                 <p>{drop.name}</p>
                 <Image
-                  height={800}
-                  width={800}
-                  className="m-auto"
+                  height={300}
+                  width={300}
                   src={drop.image}
                   alt={drop.name}
                 />

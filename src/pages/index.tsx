@@ -9,22 +9,24 @@ const Home: NextPageWithLayout = () => {
   const drops = api.drop.getDrops.useQuery();
 
   return (
-    <div className="h-3/4 w-3/4 text-center ">
+    <>
       {drops.isLoading ? (
         <div>Loading...</div>
       ) : drops.isError ? (
         <div>Error: {drops.error.message}</div>
       ) : (
-        <div>
-          <h1 className="mb-5 font-bold">UPCOMING DROPS</h1>
+        <>
+          <h1 className=" font-bold">UPCOMING DROPS</h1>
 
-          {drops.data?.map((drop) => {
-            console.log(drop);
-            return <DropCard key={drop.id} drop={drop} />;
-          })}
-        </div>
+          <div className="">
+            {drops.data?.map((drop) => {
+              console.log(drop);
+              return <DropCard key={drop.id} drop={drop} />;
+            })}
+          </div>
+        </>
       )}
-    </div>
+    </>
   );
 };
 

@@ -8,7 +8,7 @@ const Layout = ({ children }: any) => {
       <Header />
       <Nav />
       <main className="font-sm flex min-h-screen justify-center">
-        <div className="container flex flex-col items-center  gap-16 px-4 py-10 ">
+        <div className="container flex flex-col items-center gap-10 px-4 py-10 text-center ">
           {children}
         </div>
       </main>
