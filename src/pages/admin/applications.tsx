@@ -14,6 +14,20 @@ const Applications: NextPageWithLayout = () => {
     enabled: sessionData?.user?.role === "ADMIN",
   });
 
+  const updateApplication = api.application.updateApplication.useMutation({
+    onMutate: (variables) => {
+      applications.data?.forEach((application) => {
+        if (application.id === variables.id) {
+          application.status = variables.status;
+        }
+      });
+    },
+  });
+
+  const handleUpdateApplication = (id: string, status: string) => {
+    updateApplication.mutate({ id, status });
+  };
+
   if (sessionData && sessionData.user?.role === "ADMIN") {
     return (
       <>
@@ -21,14 +35,40 @@ const Applications: NextPageWithLayout = () => {
 
         <div className="w-full md:flex">
           <AdminSideNav />
-          <div className="mr-60 w-full text-center">
+          <div className="mr-60 w-full space-y-4 text-center">
             {applications.data?.map((application) => {
               console.log(application);
-              return (
-                <div key={application.id}>
-                  <p>{application.why}</p>
-                </div>
-              );
+              if (application.status === "PENDING") {
+                return (
+                  <div
+                    className="mx-auto w-1/2 border p-3 shadow-lg"
+                    key={application.id}
+                  >
+                    <h1 className="font-bold">Reason given:</h1>
+                    <p className="p-5 text-lg font-semibold">
+                      {application.why}
+                    </p>
+                    <button
+                      className="
+                  m-2 border border-black bg-black p-2 text-white"
+                      onClick={() => {
+                        handleUpdateApplication(application.id, "ACCEPTED");
+                      }}
+                    >
+                      ACCEPT
+                    </button>
+                    <button
+                      className=" m-2 border border-black bg-white p-2
+                  text-black"
+                      onClick={() => {
+                        handleUpdateApplication(application.id, "DENIED");
+                      }}
+                    >
+                      DENY
+                    </button>
+                  </div>
+                );
+              }
             })}
           </div>
         </div>

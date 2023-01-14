@@ -103,4 +103,22 @@ export const applicationRouter = createTrpcRouter({
       console.log(err);
     }
   }),
+  updateApplication: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        status: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      try {
+        const application = await ctx.prisma.application.update({
+          where: { id: input.id },
+          data: { status: input.status },
+        });
+        return application;
+      } catch (err) {
+        console.log(err);
+      }
+    }),
 });
