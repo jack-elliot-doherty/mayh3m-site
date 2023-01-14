@@ -11,90 +11,80 @@ const BurgerMenu = () => {
 
   return (
     <div className="visible p-3 md:hidden lg:hidden">
-      <button
-        type="button"
+      <div
         className="my-auto h-full space-y-1 py-2 pl-4 hover:opacity-50"
         onClick={() => setOpen(!open)}
       >
         <FaBars className="h-4 w-4" />
-      </button>
+      </div>
       <div
         className={`fixed top-0 left-0 z-10 h-full flex-none overflow-x-hidden bg-zinc-800 pt-14 text-lg text-white transition-all duration-500 ${
           open ? "w-80" : "w-0"
         } `}
       >
-        <button
+        <div
           className="absolute top-2 right-0 ml-12 text-5xl  text-gray-400"
-          type="button"
           onClick={() => setOpen(false)}
         >
           <BiX className="h-9" />
-        </button>
+        </div>
         <div className="space-y-3 p-4 text-xs">
-          <div className=" border-b pb-1 hover:opacity-50">
+          <Link
+            onClick={() => {
+              setOpen(false);
+            }}
+            href="/"
+          >
+            <div className=" mb-2 border-b pb-1 hover:opacity-50">HOME</div>
+          </Link>
+          {sessionData && sessionData.user?.role === "ADMIN" && (
             <Link
               onClick={() => {
                 setOpen(false);
               }}
-              href="/"
+              href="/admin/applications"
             >
-              HOME
+              <div className="mb-2 border-b pb-1 hover:opacity-50">ADMIN</div>
             </Link>
-          </div>
-          {sessionData && sessionData.user?.role === "ADMIN" && (
-            <div className="border-b pb-1 hover:opacity-50">
-              <Link
-                onClick={() => {
-                  setOpen(false);
-                }}
-                href="/admin/applications"
-              >
-                ADMIN
-              </Link>
-            </div>
           )}
           {sessionData && (
-            <div className="border-b pb-1 hover:opacity-50">
-              <Link
-                onClick={() => {
-                  setOpen(false);
-                }}
-                href="/account"
-              >
-                ACCOUNT
-              </Link>
-            </div>
-          )}
-          <div className="border-b pb-1 hover:opacity-50">
             <Link
               onClick={() => {
                 setOpen(false);
               }}
-              href="/contact"
+              href="/account"
             >
-              CONTACT
+              <div className="mb-2 border-b pb-1 hover:opacity-50">ACCOUNT</div>
             </Link>
-          </div>
+          )}
+          <Link
+            onClick={() => {
+              setOpen(false);
+            }}
+            href="/contact"
+          >
+            <div className="mb-2 border-b pb-1 hover:opacity-50">CONTACT</div>
+          </Link>
 
-          <div className="border-b pb-1 hover:opacity-50">
-            {sessionData ? (
-              <button
-                onClick={() => {
-                  signOut();
-                }}
-              >
-                SIGN OUT
-              </button>
-            ) : (
-              <button
-                onClick={() => {
-                  signIn();
-                }}
-              >
-                SIGN IN
-              </button>
-            )}
-          </div>
+          {sessionData ? (
+            <div
+              onClick={() => {
+                signOut();
+              }}
+              className="w-full cursor-pointer border-b pb-1 hover:opacity-50"
+            >
+              SIGN OUT
+            </div>
+          ) : (
+            <div
+              onClick={() => {
+                signIn();
+              }}
+              className="w-full cursor-pointer border-b pb-1 hover:opacity-50"
+            >
+              SIGN IN
+            </div>
+          )}
         </div>
       </div>
     </div>
