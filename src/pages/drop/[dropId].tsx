@@ -20,22 +20,20 @@ const Drop: NextPageWithLayout = () => {
     <>
       {drop.data ? (
         <>
-          <div className="w-3/4 text-center">
-            <h1 className="mb-8 text-4xl font-bold sm:text-6xl">
-              {drop.data?.name}
-            </h1>
+          <h1 className="mb-8 text-4xl font-bold sm:text-6xl">
+            {drop.data?.name}
+          </h1>
 
-            <Image
-              priority
-              width={600}
-              height={600}
-              className="m-auto "
-              alt="drop preview image"
-              src={drop.data?.image}
-            ></Image>
-            <p className="mt-3 text-xs italic">{drop.data?.description}</p>
-            <p className="text-xs italic">Capacity: {drop.data.capacity}</p>
-          </div>
+          <Image
+            priority
+            width={600}
+            height={600}
+            className="m-auto "
+            alt="drop preview image"
+            src={drop.data?.image}
+          ></Image>
+          <p className="mt-3 text-xs italic">{drop.data?.description}</p>
+          <p className="text-xs italic">Capacity: {drop.data.capacity}</p>
 
           <DropApplicationForm dropId={dropId} />
         </>
