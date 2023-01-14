@@ -21,7 +21,9 @@ const Drop: NextPageWithLayout = () => {
       {drop.data ? (
         <>
           <div className="w-3/4 text-center">
-            <h1 className="mb-8 text-6xl font-bold">{drop.data?.name}</h1>
+            <h1 className="mb-8 text-4xl font-bold sm:text-6xl">
+              {drop.data?.name}
+            </h1>
 
             <Image
               priority
