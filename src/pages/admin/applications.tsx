@@ -10,9 +10,14 @@ import { getCallBackUrl } from "../../utils/getCallBackUrl";
 const Applications: NextPageWithLayout = () => {
   const { data: sessionData } = useSession();
 
-  const applications = api.application.getAllApplications.useQuery(undefined, {
-    enabled: sessionData?.user?.role === "ADMIN",
-  });
+  const applications = api.application.getAllApplicationsByStatus.useQuery(
+    {
+      status: "PENDING",
+    },
+    {
+      enabled: sessionData?.user?.role === "ADMIN",
+    }
+  );
 
   const updateApplication = api.application.updateApplication.useMutation({
     onMutate: (variables) => {
@@ -28,6 +33,8 @@ const Applications: NextPageWithLayout = () => {
     updateApplication.mutate({ id, status });
   };
 
+  console.log(applications.data);
+
   if (sessionData && sessionData.user?.role === "ADMIN") {
     return (
       <>
@@ -36,40 +43,44 @@ const Applications: NextPageWithLayout = () => {
         <div className="w-full md:flex">
           <AdminSideNav />
           <div className="mr-60 w-full space-y-4 text-center">
-            {applications.data?.map((application) => {
-              console.log(application);
-              if (application.status === "PENDING") {
-                return (
-                  <div
-                    className="mx-auto w-1/2 border p-3 shadow-lg"
-                    key={application.id}
-                  >
-                    <h1 className="font-bold">Reason given:</h1>
-                    <p className="p-5 text-lg font-semibold">
-                      {application.why}
-                    </p>
-                    <button
-                      className="
+            {applications.data?.length ? (
+              applications.data?.map((application) => {
+                console.log(application);
+                if (application.status === "PENDING") {
+                  return (
+                    <div
+                      className="mx-auto w-1/2 border p-3 shadow-lg"
+                      key={application.id}
+                    >
+                      <h1 className="font-bold">Reason given:</h1>
+                      <p className="p-5 text-lg font-semibold">
+                        {application.why}
+                      </p>
+                      <button
+                        className="
                   m-2 border border-black bg-black p-2 text-white"
-                      onClick={() => {
-                        handleUpdateApplication(application.id, "ACCEPTED");
-                      }}
-                    >
-                      ACCEPT
-                    </button>
-                    <button
-                      className=" m-2 border border-black bg-white p-2
+                        onClick={() => {
+                          handleUpdateApplication(application.id, "ACCEPTED");
+                        }}
+                      >
+                        ACCEPT
+                      </button>
+                      <button
+                        className=" m-2 border border-black bg-white p-2
                   text-black"
-                      onClick={() => {
-                        handleUpdateApplication(application.id, "DENIED");
-                      }}
-                    >
-                      DENY
-                    </button>
-                  </div>
-                );
-              }
-            })}
+                        onClick={() => {
+                          handleUpdateApplication(application.id, "DENIED");
+                        }}
+                      >
+                        DENY
+                      </button>
+                    </div>
+                  );
+                }
+              })
+            ) : (
+              <h1>No Applications to show</h1>
+            )}
           </div>
         </div>
       </>
