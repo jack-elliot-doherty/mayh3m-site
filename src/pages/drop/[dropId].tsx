@@ -32,13 +32,15 @@ const Drop: NextPageWithLayout = () => {
             alt="drop preview image"
             src={drop.data?.image}
           ></Image>
-          <p className="mt-3 text-xs italic">{drop.data?.description}</p>
-          <p className="text-xs italic">Capacity: {drop.data.capacity}</p>
+          <div className="-mt-7">
+            <p className="mt-3 text-xs italic">{drop.data?.description}</p>
+            <p className="text-xs italic">Capacity: {drop.data.capacity}</p>
+          </div>
 
           <DropApplicationForm dropId={dropId} />
         </>
       ) : (
-        <div>Loading...</div>
+        <>Loading...</>
       )}
     </>
   );
