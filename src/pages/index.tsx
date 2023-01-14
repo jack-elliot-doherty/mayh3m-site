@@ -18,12 +18,10 @@ const Home: NextPageWithLayout = () => {
         <>
           <h1 className=" font-bold">UPCOMING DROPS</h1>
 
-          <div className="">
-            {drops.data?.map((drop) => {
-              console.log(drop);
-              return <DropCard key={drop.id} drop={drop} />;
-            })}
-          </div>
+          {drops.data?.map((drop) => {
+            console.log(drop);
+            return <DropCard key={drop.id} drop={drop} />;
+          })}
         </>
       )}
     </>

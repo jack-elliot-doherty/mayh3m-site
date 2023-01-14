@@ -15,8 +15,8 @@ const DropCard: React.FC<dropCardProps> = ({ drop }) => {
   return (
     <Link href={`/drop/${drop.id}`}>
       <Image
-        width={300}
-        height={300}
+        width={500}
+        height={500}
         alt="drop preview image"
         className="m-auto"
         src={drop.image}
