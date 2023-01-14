@@ -40,15 +40,10 @@ const DropApplicationForm: React.FC<DropApplicationFormProps> = ({
 
   if (hasApplied.data || createNewApplication.isSuccess) {
     return (
-      <div className="text-center">
-        <p className="text-xl font-bold">YOU APPLIED FOR THIS DROP</p>
-        <p className="text-xs italic">
+      <div className="">
+        <p className="text-lg font-bold">YOU APPLIED FOR THIS DROP</p>
+        <p className="mb-10 text-xs italic">
           Keep an eye on your email for updates from us about your application
-        </p>
-        <p className="mt-4 text-xl font-bold">GOOD LUCK</p>
-        <p className="text-xs italic">FROM THE MAYH3M TEAM</p>
-        <p className=" mb-2 mt-8 text-xs italic">
-          Check out our other upcoming drops
         </p>
         <Link className=" bg-black p-2 text-sm font-bold text-white" href="/">
           UPCOMING DROPS
