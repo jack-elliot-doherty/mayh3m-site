@@ -21,7 +21,6 @@ const Drop: NextPageWithLayout = () => {
       {drop.data ? (
         <>
           <div className="w-3/4 text-center">
-            <h1 className="mb-2 text-3xl font-bold">{drop.data?.name}</h1>
             <Image
               priority
               width={600}
@@ -30,6 +29,7 @@ const Drop: NextPageWithLayout = () => {
               alt="drop preview image"
               src={drop.data?.image}
             ></Image>
+            <h1 className="mt-2 text-3xl font-bold">{drop.data?.name}</h1>
             <p className="mt-5 font-bold">{drop.data?.description}</p>
             <p className="text-xs italic">Capacity: {drop.data.capacity}</p>
           </div>
