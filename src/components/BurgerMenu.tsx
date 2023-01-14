@@ -7,7 +7,6 @@ import { BiX } from "react-icons/bi";
 const BurgerMenu = () => {
   const { data: sessionData } = useSession();
   const [open, setOpen] = useState(false);
-  console.log(open);
 
   return (
     <div className="visible p-3 md:hidden lg:hidden">

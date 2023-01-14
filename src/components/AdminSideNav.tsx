@@ -19,6 +19,11 @@ const AdminSideNav = () => {
             <span className="hover:opacity-50">DROPS</span>
           </Link>
         </li>
+        <li className="my-2 border-b border-black pb-2">
+          <Link href="/admin/drop/create">
+            <span className="hover:opacity-50">CREATE NEW DROP</span>
+          </Link>
+        </li>
       </ul>
     </nav>
   );

@@ -5,6 +5,7 @@ import { api } from "../../utils/api";
 import { getCallBackUrl } from "../../utils/getCallBackUrl";
 import { NextPageWithLayout } from "../_app";
 import Image from "next/image";
+import DropCard from "../../components/DropCard";
 
 const Drops: NextPageWithLayout = () => {
   const drops = api.drop.getDrops.useQuery();
@@ -21,18 +22,7 @@ const Drops: NextPageWithLayout = () => {
         <div className="mr-60 w-full text-center">
           {drops.data?.map((drop) => {
             console.log(drop);
-            return (
-              <div className="text-center" key={drop.id}>
-                <p>{drop.name}</p>
-                <Image
-                  height={300}
-                  width={300}
-                  src={drop.image}
-                  alt={drop.name}
-                />
-                <p>{drop.description}</p>
-              </div>
-            );
+            return <DropCard key={drop.id} drop={drop} />;
           })}
         </div>
       </div>
