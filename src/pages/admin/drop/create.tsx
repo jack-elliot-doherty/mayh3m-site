@@ -8,13 +8,13 @@ import DropCard from "../../../components/DropCard";
 import { useState } from "react";
 
 type FormData = {
-  name: string,
-  description: string,
-  quantity: number,
-  image: string,
-}
+  name: string;
+  description: string;
+  quantity: number;
+  image: string;
+};
 
-const createDrop = () => {
+const CreateDrop = () => {
   const {
     register,
     handleSubmit,
@@ -22,15 +22,20 @@ const createDrop = () => {
     formState: { errors },
   } = useForm();
 
-  const [drop, setDrop] = useState({id: 0, name: "", description: "", image: "", quanity: 0, price: 0,});
-
+  const [drop, setDrop] = useState({
+    id: 0,
+    name: "",
+    description: "",
+    image: "",
+    quanity: 0,
+    price: 0,
+  });
 
   console.log(getValues());
 
-  const  = (data: any) => {
+  const updateDrop = (data: any) => {
     setDrop(data);
-
-
+  };
   return (
     <>
       <h1 className=" font-bold">DROPS</h1>
@@ -62,7 +67,9 @@ const createDrop = () => {
               {...register("image", { required: true })}
             />
 
-            <button className="border-2 border-black" type="submit">Preview Drop</button>
+            <button className="border-2 border-black" type="submit">
+              Preview Drop
+            </button>
           </form>
           {/* <DropCard drop={getValues()} /> */}
         </div>
@@ -90,8 +97,8 @@ export async function getServerSideProps(context: any) {
   };
 }
 
-createDrop.getLayout = function getLayout(page: NextPageWithLayout) {
+CreateDrop.getLayout = function getLayout(page: NextPageWithLayout) {
   return <Layout>{page}</Layout>;
 };
 
-export default createDrop;
+export default CreateDrop;
