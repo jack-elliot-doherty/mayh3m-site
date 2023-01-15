@@ -11,7 +11,10 @@ const Home: NextPageWithLayout = () => {
   return (
     <>
       {drops.isLoading ? (
-        <div>Loading...</div>
+        <div>
+          {/* loading spinner */}
+          <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900"></div>
+        </div>
       ) : drops.isError ? (
         <div>Error: {drops.error.message}</div>
       ) : (
