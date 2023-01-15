@@ -5,6 +5,14 @@ import { getCallBackUrl } from "../../../utils/getCallBackUrl";
 import AdminSideNav from "../../../components/AdminSideNav";
 import { useForm } from "react-hook-form";
 import DropCard from "../../../components/DropCard";
+import { useState } from "react";
+
+type FormData = {
+  name: string,
+  description: string,
+  quantity: number,
+  image: string,
+}
 
 const createDrop = () => {
   const {
@@ -14,7 +22,14 @@ const createDrop = () => {
     formState: { errors },
   } = useForm();
 
+  const [drop, setDrop] = useState({id: 0, name: "", description: "", image: "", quanity: 0, price: 0,});
+
+
   console.log(getValues());
+
+  const  = (data: any) => {
+    setDrop(data);
+
 
   return (
     <>
@@ -47,7 +62,7 @@ const createDrop = () => {
               {...register("image", { required: true })}
             />
 
-            <input className="border-2 border-black" type="submit" />
+            <button className="border-2 border-black" type="submit">Preview Drop</button>
           </form>
           {/* <DropCard drop={getValues()} /> */}
         </div>
