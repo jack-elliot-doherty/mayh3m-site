@@ -10,7 +10,10 @@ import DropCard from "../../components/DropCard";
 const Drops: NextPageWithLayout = () => {
   const drops = api.drop.getDrops.useQuery();
 
-  if (drops.isLoading) return <div>Loading...</div>;
+  if (drops.isLoading)
+    return (
+      <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900"></div>
+    );
   if (drops.isError) return <div>Error: {drops.error.message}</div>;
 
   return (
