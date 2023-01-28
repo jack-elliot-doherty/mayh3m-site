@@ -54,7 +54,7 @@ const Drop: NextPageWithLayout = () => {
                   signIn();
                 }}
               >
-                Sign In
+                SIGN IN
               </button>
             </div>
           )}
