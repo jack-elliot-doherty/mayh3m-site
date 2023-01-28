@@ -35,7 +35,9 @@ const DropApplicationForm: React.FC<DropApplicationFormProps> = ({
   });
 
   if (hasApplied.isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900"></div>
+    );
   }
 
   if (hasApplied.data || createNewApplication.isSuccess) {
@@ -61,10 +63,7 @@ const DropApplicationForm: React.FC<DropApplicationFormProps> = ({
             <p className="my-2 text-xs italic">
               Apply below for a chance to be involved in the drop.
             </p>
-            <p className="mb-4 text-xs italic">
-              Limited units will be released, only those who apply and are
-              accepted will get to the chance to purchase.
-            </p>
+
             <label className="text-xs font-bold" htmlFor="why">
               WHY DO YOU WANT TO JOIN THIS DROP?
             </label>

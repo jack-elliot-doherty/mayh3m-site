@@ -13,17 +13,18 @@ type dropCardProps = {
 };
 const DropCard: React.FC<dropCardProps> = ({ drop }) => {
   return (
-    <Link href={`/drop/${drop.id}`}>
-      <Image
-        width={500}
-        height={500}
-        alt="drop preview image"
-        className="m-auto"
-        src={drop.image}
-      ></Image>
-      {/* <p className="mt-5 text-2xl font-bold">{drop.name}</p> */}
-      <p className="mt-2 text-xs">{drop.description}</p>
-    </Link>
+    <div className="">
+      <Link href={`/drop/${drop.id}`}>
+        <Image
+          width={500}
+          height={500}
+          alt="drop preview image"
+          className="m-auto shadow-xl"
+          src={drop.image}
+        ></Image>
+        <p className="mt-2 text-xs ">{drop.description}</p>
+      </Link>
+    </div>
   );
 };
 

@@ -12,7 +12,6 @@ const Home: NextPageWithLayout = () => {
     <>
       {drops.isLoading ? (
         <div>
-          {/* loading spinner */}
           <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900"></div>
         </div>
       ) : drops.isError ? (
@@ -22,7 +21,6 @@ const Home: NextPageWithLayout = () => {
           <h1 className=" font-bold">UPCOMING DROPS</h1>
 
           {drops.data?.map((drop) => {
-            console.log(drop);
             return <DropCard key={drop.id} drop={drop} />;
           })}
         </>

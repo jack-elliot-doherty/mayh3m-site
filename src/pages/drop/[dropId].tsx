@@ -3,12 +3,12 @@ import Layout from "../../components/layout";
 import { api } from "../../utils/api";
 import { NextPageWithLayout } from "../_app";
 import DropApplicationForm from "../../components/DropApplicationForm";
-import { getSession } from "next-auth/react";
-import { getCallBackUrl } from "../../utils/getCallBackUrl";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 
 const Drop: NextPageWithLayout = () => {
   const router = useRouter();
+  const { data: session } = useSession();
 
   const dropId = router.query.dropId as string;
   const drop = api.drop.getDrop.useQuery({
@@ -35,9 +35,29 @@ const Drop: NextPageWithLayout = () => {
           <div className="-mt-7">
             <p className="mt-3 text-xs italic">{drop.data?.description}</p>
             <p className="text-xs italic">Capacity: {drop.data.capacity}</p>
+            <p className="mt-3 text-xs italic">
+              Limited units to be released, only those who apply and are
+              accepted will be able to purchase.
+            </p>
           </div>
 
-          <DropApplicationForm dropId={dropId} />
+          {session ? (
+            <DropApplicationForm dropId={dropId} />
+          ) : (
+            <div>
+              <p className="mt-3 text-xs italic">
+                You must be signed in to apply for this drop
+              </p>
+              <button
+                className="m-2 bg-black px-3 py-2 text-sm font-bold text-white"
+                onClick={() => {
+                  signIn();
+                }}
+              >
+                Sign In
+              </button>
+            </div>
+          )}
         </>
       ) : (
         <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900"></div>
@@ -45,25 +65,6 @@ const Drop: NextPageWithLayout = () => {
     </>
   );
 };
-
-export async function getServerSideProps(context: any) {
-  const session = await getSession(context);
-
-  const callbackUrl = getCallBackUrl(context.req.headers.referer);
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: `/auth/signin?callbackUrl=${callbackUrl}`,
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: { session },
-  };
-}
 
 Drop.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
